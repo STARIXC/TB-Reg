@@ -151,9 +151,7 @@ $(function () {
                     SerialNumber: serialNumber,
                     Xray: Xray
                 };
-                           
-                
-               // navigator.serviceWorker.controller.postMessage(msg);
+            
                 $.ajax({
                     type: 'POST',
                     url: "./savedata",

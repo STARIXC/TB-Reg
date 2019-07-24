@@ -65,7 +65,7 @@ public class databasesave extends HttpServlet {
             dbsetup = dbconnpath + "\\dbase.txt";
             if (isUnix()) {
                 dbconnpath = "//TB_REGISTER/_/_";
-                dbsetup = dbconnpath + "/dbase.txt";
+                dbsetup = dbconnpath + "/dtbase.txt";
             }
             //CREATE A DIRECTORY
             new File(dbconnpath).mkdirs();

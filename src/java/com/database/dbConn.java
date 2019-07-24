@@ -127,10 +127,10 @@ public class dbConn {
             String dbconnpath = null;
 
             if (isWindows()) {
-                dbconnpath = drive + ":/TB_REGISTER/_/_/dbase.txt";
+                dbconnpath = drive + ":/TB_REGISTER/_/_/dtbase.txt";
 
             } else if (isUnix()) {
-                dbconnpath = "TB_REGISTER/_/_/dbase.txt";
+                dbconnpath = "TB_REGISTER/_/_/dtbase.txt";
 
             }
 

@@ -109,11 +109,11 @@
         </div>
 
 
-        <div class="my-1 p-2 bg-white rounded box-shadow">
+        <div class="my-1 p-2 mt-3 bg-white rounded box-shadow">
             <section id="tabs" class="project-tab">
-                <div class="container1">
+                <div class="container1 pb-5">
                     <div class="row">
-                        <div class="col-md-12">
+                        <div class="col-md-12 pb-5">
                             <nav>
                                 <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
                                     <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="glyphicon glyphicon-plus"></i> Add New</a>
