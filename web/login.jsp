@@ -47,10 +47,10 @@
                                 <div class="col-lg-12">
                                     <form id="login-form" action="EmployeeServlet" method="post" role="form" style="display: block;">
                                         <div class="form-group">
-                                            <input type="text" name="email" required="" placeholder="Employee Email" tabindex="1" class="form-control" value="">
+                                            <input type="text" name="username" required="" placeholder="Username" tabindex="1" class="form-control" value="">
                                         </div>
                                         <div class="form-group">
-                                            <input type="password" name="password" required="" placeholder="Employee Password" tabindex="2" class="form-control" >
+                                            <input type="password" name="password" required="" placeholder="Password" tabindex="2" class="form-control" >
                                         </div>
 
                                         <div class="form-group">
@@ -72,28 +72,45 @@
                                     </form>
                                     <form id="register-form" action="EmployeeServlet" method="post" role="form" style="display: none;">
                                         <div class="form-group">
-                                            <label> Employee Name:</label>
-                                            <input type="text" name="name" id="name" required="" placeholder="Employee Name" class="form-control">
+                                            <label> First Name:</label>
+                                            <input type="text" name="fname" id="fname" required="" placeholder="Enter First Name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label>Employee Email:</label>
-                                            <input type="text" name="email" id="email" required="" placeholder="Employee Email" class="form-control">
+                                            <label> Middle Name:</label>
+                                            <input type="text" name="mname" id="mname" required="" placeholder="Enter Middle Name" class="form-control">
                                         </div>
                                         <div class="form-group">
-                                            <label>Employee Password:</label>
-                                            <input type="password" name="password" id="password" required="" placeholder="Employee Password" class="form-control" onblur="pataregfacility()">
+                                            <label> Last Name:</label>
+                                            <input type="text" name="lname" id="lname" required="" placeholder="Enter Last Name" class="form-control">
                                         </div>
                                         <div class="form-group">
+                                            <label> Email:</label>
+                                            <input type="text" name="email" id="email" required="" placeholder="Enter Email" class="form-control">
+                                        </div>
+                                        <div class="form-group">
+                                            <label> User Name:</label>
+                                            <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control">
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label> Password:</label>
+                                            <input type="password" name="password" id="password" required="" placeholder="Enter Password" class="form-control" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label> Password:</label>
+                                            <input type="password" name="repassword" id="repassword" required="" placeholder="Repeat Password" class="form-control">
+                                        </div>
+                                        <!--    <div class="form-group">
                                             <label>Employee Facility:</label>
                                             <select class="form-control" name='department' id='department' >
                                                 <option value=''>Select Facility</option>
                                             </select>
-                                            <!--  <input type="text" name="department" id="department" required="" placeholder="Employee Department" class="form-control">-->
+                                          <input type="text" name="department" id="department" required="" placeholder="Employee Department" class="form-control">
                                         </div>
                                         <div class="form-group">
                                             <label>Employee Designation:</label>
                                             <input type="text" name="designation" id="designation" required="" placeholder="Employee Designation" class="form-control">
-                                        </div>
+                                        </div>-->
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-sm-6 col-sm-offset-3">

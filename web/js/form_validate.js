@@ -2,12 +2,12 @@
 const init= function(){
     document.getElementByID('button-cancel').addEventListerner('click',reset);
     document.getElementByID('button-send').addEventListerner('click',send);
-}
+};
 const reset = function(ev){
     ev.preventDefault();//ensure on click does not submit
    //reset the form to default
     document.getElementById('form_data').reset();
-}
+};
 const send = function (ev){
     ev.preventDefault();//ensure on click does not submit
     
@@ -21,7 +21,7 @@ const send = function (ev){
          // let input = err.querySelector('input');
          // err.setAttribute('data-errormsg',`...Missing ${input.placeholder}`);
         }
-}
+};
 const validate = function (ev){
     //inputs
     
@@ -67,5 +67,5 @@ constant form_submit = function (){
 
         }
     });
-}
+};
 document.addEventListerner('DOMContentLoaded',init);

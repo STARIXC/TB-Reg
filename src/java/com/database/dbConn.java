@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.sql.Connection;
+import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -24,7 +25,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import static com.database.OSValidator.isUnix;
 import static com.database.OSValidator.isWindows;
-import com.mysql.jdbc.CallableStatement;
+//import com.mysql.cj.jdbc.CallableStatement;
 public class dbConn {
 
     public ResultSet rs0, rs, rs1, rs2, rs3, rs4, rs_1, rs_2, rs_3, rs_4, rs_5, rs_6, anc_sch_rs;
@@ -32,7 +33,7 @@ public class dbConn {
     public Statement state, state1, state2, state3, state4;
     public PreparedStatement pst, pst1, pst2, pst3, pst4, pst5;
     public PreparedStatement prest, prest1, prest2, prest3, prest4, prest5;
-    public CallableStatement csmt, csmt1, csmt2, csmt3, csmt4;
+    //public CallableStatement csmt, csmt1, csmt2, csmt3, csmt4;
     String mydrive = "";
     public static int issetdbcalled_file_exists = 2;
     public static int issetdbcalled_exception = 2;
@@ -42,7 +43,7 @@ public class dbConn {
 
  public dbConn() {
         try {
-            Class.forName("com.mysql.jdbc.Driver").newInstance();
+            Class.forName("com.mysql.cj.jdbc.Driver").newInstance();
             // Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/mhc","root", "");
             conn = null;
             //if the saved host name is less than 2 letters long, then thats not a genuine host name
@@ -104,7 +105,7 @@ public class dbConn {
 
             }
 
-        } catch (Exception ex) {
+        } catch (ClassNotFoundException | IllegalAccessException | InstantiationException | SQLException ex) {
             Logger.getLogger(dbConn.class.getName()).log(Level.SEVERE, null, ex);
             System.out.println("ERROR WHILE CONNECTING TO DATABASE. CHECK YOUR CONNECTION CREDENTIALS SETTINGS in dbConn.java " + ex);
             //error in dbase configuration 
@@ -146,13 +147,13 @@ public class dbConn {
                 // Print the content on the console
                 dbsetup[count] = stLine;
 
-                if (count < 4) {
+                if (count < 5) {
                     count++;
                 }
             }
             //Close the input stream
             in.close();
-        } catch (IOException ex) {
+        }catch (IOException ex) {
             Logger.getLogger(dbConn.class.getName()).log(Level.SEVERE, null, ex);
 
             System.out.println("MY VALUE:" + issetdbcalled_file_exists);
@@ -170,6 +171,7 @@ public class dbConn {
             worked = false;
 
         }
+        // handle any errors
 
         return worked;
 
@@ -179,7 +181,7 @@ public class dbConn {
         try {
 
             //not so good for now because the host name is static
-            String url = "http://localhost:8085/Tb_Reg/dataconfig.jsp";
+            String url = "http://localhost:8080/Tb_Reg/dataconfig.jsp";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             //getdbsettings("M");
         } catch (IOException ex) {

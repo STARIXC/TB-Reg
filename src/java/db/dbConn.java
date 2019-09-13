@@ -127,10 +127,10 @@ public final class dbConn {
             String dbconnpath = null;
 
             if (isWindows()) {
-                dbconnpath = drive + ":/TB_REGISTER/_/_/dbase.txt";
+                dbconnpath = drive + ":/TB_REGISTER/_/_/dtbase.txt";
 
             } else if (isUnix()) {
-                dbconnpath = "TB_REGISTER/_/_/dbase.txt";
+                dbconnpath = "TB_REGISTER/_/_/dtbase.txt";
 
             }
 
@@ -179,7 +179,7 @@ public final class dbConn {
         try {
 
             //not so good for now because the host name is static
-            String url = "http://localhost:8085/Tb_reg/dataconfig.jsp";
+            String url = "http://localhost:8080/Tb_Reg/dataconfig.jsp";
             java.awt.Desktop.getDesktop().browse(java.net.URI.create(url));
             //getdbsettings("M");
         } catch (IOException ex) {

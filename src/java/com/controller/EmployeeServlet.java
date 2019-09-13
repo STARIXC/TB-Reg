@@ -37,26 +37,30 @@ public class EmployeeServlet extends HttpServlet {
             {
                 System.out.println("In Registration");
                 /* Getting The Value From TextBox  */
-                String name=request.getParameter("name");
+                String fname=request.getParameter("fname");
+                String mname=request.getParameter("mname");
+                String lname=request.getParameter("lname");
+                String username=request.getParameter("username");
                 String email=request.getParameter("email");
                 String password=request.getParameter("password");
-                String department=request.getParameter("department");
-                String designation=request.getParameter("designation");
+                //String department=request.getParameter("department");
+               // String designation=request.getParameter("designation");
                 
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//storing today date
                 String todayDate=sdf.format(new Date());
                 
-                System.out.println(name+" "+email+" "+password+" "+department+" "+designation+" "+todayDate);
+                System.out.println(fname+" "+mname+" "+lname+" "+username+" "+email+" "+password+"  "+todayDate);
                 /* JDBC Connection Code  */
                 /* JDBC Connection Code  */
                 dbConn conn = new dbConn();
                 
-                String sql="insert into employee(name,email,password,department,designation,added_date) values('"+name+"','"+email+"','"+password+"','"+department+"','"+designation+"','"+todayDate+"')";
+                String sql="insert into user(fname,mname,lname,username,email,password,date_added) values('"+fname+"','"+mname+"','"+lname+"','"+username+"','"+email+"','"+password+"','"+todayDate+"')";
+                //String sql="insert into employee(name,email,password,department,designation,added_date) values('"+name+"','"+email+"','"+password+"','"+department+"','"+designation+"','"+todayDate+"')";
                 conn.pst = conn.conn.prepareStatement(sql);
                 status = conn.pst.executeUpdate();
                 if(status>0)
                 {
-                    session.setAttribute("email",email);
+                    session.setAttribute("username",username);
                     response.sendRedirect("home.jsp");
                 }
                 else
@@ -68,16 +72,17 @@ public class EmployeeServlet extends HttpServlet {
             {
                 System.out.println("In Login");
                 /* Getting The Value From TextBox  */
-                String email=request.getParameter("email");
+                String username=request.getParameter("username");
                 String password=request.getParameter("password");
-                System.out.println(email+" "+password);
+                System.out.println(username+" "+password);
                 dbConn conn = new dbConn();
-                String sql="select * from employee where email='"+email+"' and password='"+password+"'";
+                String sql="select * from user where username='"+username+"' and password='"+password+"'";
+                //String sql="select * from employee where email='"+email+"' and password='"+password+"'";
                 conn.rs = conn.st.executeQuery(sql);
                 
                 if(conn.rs.next()){
                    String ID = conn.rs.getString("id");
-                   String name = conn.rs.getString("name");
+                   String name = conn.rs.getString("fname");
                     session.setAttribute("name",name);   
                     session.setAttribute("ID",ID); 
                     Cookie ck = new Cookie("name",name);
