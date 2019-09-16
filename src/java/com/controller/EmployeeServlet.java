@@ -8,6 +8,7 @@ package com.controller;
 import com.database.dbConn;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.security.MessageDigest;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.servlet.ServletException;
@@ -43,9 +44,25 @@ public class EmployeeServlet extends HttpServlet {
                 String username=request.getParameter("username");
                 String email=request.getParameter("email");
                 String password=request.getParameter("password");
+                String generatedps=null;
                 //String department=request.getParameter("department");
                // String designation=request.getParameter("designation");
+               //Create messageDigest instance of md5
+                MessageDigest md   = MessageDigest.getInstance("MD5");
                 
+               //add password byte to digest
+               md.update(password.getBytes());
+               //get the hash byte
+               byte[] bytes = md.digest();
+               //this bytes[] has bytes in decimal format
+               //convert it to hexadecima format
+               StringBuilder sb = new StringBuilder();
+               for(int i=0; i< bytes.length; i++){
+               sb.append(Integer.toString((bytes[i] & 0xff)+0x100, 16).substring(1));
+               }
+               generatedps=sb.toString();
+                
+                //byte[] messageDigest = md.digest()
                 SimpleDateFormat sdf=new SimpleDateFormat("yyyy-MM-dd");//storing today date
                 String todayDate=sdf.format(new Date());
                 
@@ -54,7 +71,7 @@ public class EmployeeServlet extends HttpServlet {
                 /* JDBC Connection Code  */
                 dbConn conn = new dbConn();
                 
-                String sql="insert into user(fname,mname,lname,username,email,password,date_added) values('"+fname+"','"+mname+"','"+lname+"','"+username+"','"+email+"','"+password+"','"+todayDate+"')";
+                String sql="insert into user(fname,mname,lname,username,email,password) values('"+fname+"','"+mname+"','"+lname+"','"+username+"','"+email+"','"+generatedps+"')";
                 //String sql="insert into employee(name,email,password,department,designation,added_date) values('"+name+"','"+email+"','"+password+"','"+department+"','"+designation+"','"+todayDate+"')";
                 conn.pst = conn.conn.prepareStatement(sql);
                 status = conn.pst.executeUpdate();
@@ -74,14 +91,29 @@ public class EmployeeServlet extends HttpServlet {
                 /* Getting The Value From TextBox  */
                 String username=request.getParameter("username");
                 String password=request.getParameter("password");
+                String loginpass=null;
+                 //Create messageDigest instance of md5
+                MessageDigest md   = MessageDigest.getInstance("MD5");
+                
+               //add password byte to digest
+               md.update(password.getBytes());
+               //get the hash byte
+               byte[] bytes = md.digest();
+               //this bytes[] has bytes in decimal format
+               //convert it to hexadecima format
+               StringBuilder sb = new StringBuilder();
+               for(int i=0; i< bytes.length; i++){
+               sb.append(Integer.toString((bytes[i] & 0xff)+0x100, 16).substring(1));
+               }
+               loginpass=sb.toString();
                 System.out.println(username+" "+password);
                 dbConn conn = new dbConn();
-                String sql="select * from user where username='"+username+"' and password='"+password+"'";
+                String sql="select * from user where username='"+username+"' and password='"+loginpass+"'";
                 //String sql="select * from employee where email='"+email+"' and password='"+password+"'";
                 conn.rs = conn.st.executeQuery(sql);
                 
                 if(conn.rs.next()){
-                   String ID = conn.rs.getString("id");
+                   String ID = conn.rs.getString("userid");
                    String name = conn.rs.getString("fname");
                     session.setAttribute("name",name);   
                     session.setAttribute("ID",ID); 

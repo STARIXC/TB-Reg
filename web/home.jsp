@@ -35,7 +35,7 @@
     <%
         String name = (String) session.getAttribute("name");
         String id = (String) session.getAttribute("ID");
-        if(id!=null){
+        if (id != null) {
     %>
     <nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
         <a class="navbar-brand mr-auto mr-lg-0" href="#">TB Register System</a>
@@ -55,7 +55,7 @@
                 -->
 
             </ul>
-            <ul class="nav navbar-nav navbar-right">
+            <ul class="nav navbar-nav navbar-right text-white">
                 <li class="nav-item">
                     <a class="nav-link" href="#">Welcome :<i class="glyphicon glyphicon-user"></i><%=name%> </a>
                 </li>
@@ -80,46 +80,57 @@
         </div>
     </nav>
 
-    <div class="nav-scroller bg-white box-shadow">
+    <div class="nav-scroller bg-default box-shadow">
         <nav class="nav nav-underline">
             <a class="nav-link active" href="#">Dashboard</a>
-            <a class="nav-link" href="offline/index.jsp">Offline Mode</a>
-            <!--  <a class="nav-link" href="#">
-                  Friends
-                  <span class="badge badge-pill bg-light align-text-bottom">27</span>
-              </a>
-              
-              <a class="nav-link" href="#">Suggestions</a>-->
+            <!--  <a class="nav-link" href="offline/index.jsp">Offline Mode</a>
+              <a class="nav-link" href="#">
+                   Friends
+                   <span class="badge badge-pill bg-light align-text-bottom">27</span>
+               </a>
+               
+               <a class="nav-link" href="#">Suggestions</a>-->
 
         </nav>
     </div>
 
     <main role="main" class="container">
-        <div class="d-flex align-items-center p-3 my-3 text-white-50 bg-purple rounded box-shadow" style="background-color: rgb(0, 128, 255);">
-            <div class="lh-100">
-                <h6 class="mb-0 text-white lh-100">Tb Data Entry and Management System</h6>
+        <div class="row p-3 mt-2">
+            <label class="col-sm-2"></label>
+            <a class='btn btn-success col-sm-3' style="text-align: center;" href='https://hsdsacluster2.fhi360.org'>Dashboards Home</a>
+            <label class="col-sm-2"></label>
+            <a class='btn btn-success col-sm-3' style="text-align: center;" href='#'>Generate Reports</a>
+            <label class="col-sm-2"></label>
+        </div>
+        <div class="p-3 my-3  bg-white rounded box-shadow">
+
+            <div class="lh-100 text-center ">
+                <h5 class="mb-0 text-primary lh-100 ">Tb Data Entry and Management System</h5>
+
             </div>
         </div>
-        <div class="d-flex align-items-center p-2 my-1 text-white-50 bg-default rounded box-shadow">
+        <div class="row p-1 m-2 offset-1">
 
-            <div class="text-center col-12"><button id='refreshpage' class="btn btn-large btn-primary" type="button"><i class="glyphicon glyphicon-refresh"> </i></button></div>
-
-
-
+            <button id='refreshpage' class="btn btn-large btn-danger col-md-6" type="button"><i class="glyphicon glyphicon-refresh"> </i></button>
+            <a class="btn btn-danger col-md-6" title="Help" data-toggle="modal" href="#help">
+                <i class="glyphicon glyphicon-question-sign"></i>
+                <br> Help
+            </a>  
         </div>
 
 
-        <div class="my-1 p-2 mt-3 bg-white rounded box-shadow">
+
+        <div class="my-1 p-2 mb-5 bg-white rounded box-shadow">
             <section id="tabs" class="project-tab">
-                <div class="container1 pb-5">
+                <div class="container">
                     <div class="row">
-                        <div class="col-md-12 pb-5">
-                            <nav>
-                                <div class="nav nav-tabs nav-fill" id="nav-tab" role="tablist">
-                                    <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="glyphicon glyphicon-plus"></i> Add New</a>
-                                    <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> <i class="glyphicon glyphicon-search"></i>View Data</a>
-                                    <!--    <a class="nav-item nav-link" id="nav-update-tab" data-toggle="tab" href="#nav-update" role="tab" aria-controls="nav-contact" aria-selected="false" onclick="displayUpdateData()"></a>-->
-                                </div>
+                        <div class="col-md-12">
+                             <nav>
+                                <ul class="nav nav-tabs" id="nav-pills" >
+                                    <li class='nav-item btn btn-primary p-0  mr-1 mb-1 col-md-5'><a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab" aria-controls="nav-home" aria-selected="true"><i class="glyphicon glyphicon-plus"></i> Add New</a></li>
+                                    <li class='nav-item btn btn-primary p-0  mr-1 mb-1 col-md-5'><a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab" aria-controls="nav-profile" aria-selected="false"> <i class="glyphicon glyphicon-search"></i>View Data</a></li>
+                                </ul>
+
                             </nav>
                             <div class="tab-content" id="nav-tabContent">
                                 <%
@@ -142,18 +153,19 @@
 
 
                                 %>
-                                <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+                                <div class="tab-pane fade show active" id="nav-home">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Enter New Record</h6>
                                     <div class="text-white pl-5 pt-3 bg-primary">
+                                        <div class="row offset-0 p-2">
                                         <center>
                                             <div id="loading"></div>
                                         </center>
-
+                                            
                                         <form method="POST"  id="form_data" autocomplete="off" validate >
 
                                             <div class="row offset-0 p-2">
                                                 <input type="hidden" name="id" id="id" value="<%=id%>">
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
                                                     <div class="form-group">
                                                         <label for="serialNumber">Serial Number</label>
                                                         <input type="text" class="form-control" id="serialNumber" name="serialNumber" placeholder=" Enter Serial Number">
@@ -196,7 +208,7 @@
                                                 </div>
                                             </div>
                                             <div class="row p-2">
-                                                <div class="col-md-5">
+                                                <div class="col-md-6">
 
                                                     <div class="form-group">
                                                         <label for="sex">Sex</label>
@@ -308,7 +320,7 @@
 
                                         </form>
                                     </div>
-
+                                    </div>
                                 </div>
                                 <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Tb Register Records</h6>
@@ -350,6 +362,7 @@
                         </div>
                     </div>
                 </div>
+                
             </section>
 
 
@@ -357,7 +370,7 @@
 
 
     </main>
-     <!-- Modal -->
+    <!-- Modal -->
     <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="Help" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -451,7 +464,7 @@
     %>
     <!--<script src="js/app.js"></script>-->
     <script src="pouchdb-7.0.0.min.js"></script>
-   
+
 
     <script>
                                                             jQuery(function ($)
