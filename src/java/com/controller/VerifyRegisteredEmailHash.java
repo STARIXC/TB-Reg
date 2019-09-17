@@ -5,8 +5,12 @@
  */
 package com.controller;
 
+import com.database.dbConn;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -28,24 +32,39 @@ public class VerifyRegisteredEmailHash extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            throws ServletException, IOException, SQLException {
         response.setContentType("text/html;charset=UTF-8");
         
-        String userId = request.getParameter("userId");
+        String username = request.getParameter("username");
         String hash = request.getParameter("hash");
+        //String  scope = request.getParameter("scope");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet VerifyRegisteredEmailHash</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet VerifyRegisteredEmailHash at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+             //Create messageDigest instance of md5
+             System.out.println(username + " " + hash);
+                dbConn conn = new dbConn();
+                String sql = "select * from user where username='" + username + "' and email_verification_hash='" + hash + "'";
+                //String sql="select * from employee where email='"+email+"' and password='"+password+"'";
+                conn.rs = conn.st.executeQuery(sql);
+                if (conn.rs.next()) {
+                    updateStatus(username,"active",null);
+                       response.sendRedirect("activated.jsp");
+                
+                }         
         }
     }
+    public void updateStatus(String username, String status, String verification_hash) throws SQLException{
+    
+                dbConn conn = new dbConn();
+                String sql = "UPDATE user SET status=?,email_verification_hash=? WHERE username =?";
+                conn.pst.setString(1, status);
+                conn.pst.setString(2, verification_hash);
+                conn.pst.setString(2, username);
+                conn.pst = conn.conn.prepareStatement(sql);
+                conn.pst.executeUpdate();
+                
+     }
+
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -59,7 +78,11 @@ public class VerifyRegisteredEmailHash extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(VerifyRegisteredEmailHash.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -73,7 +96,11 @@ public class VerifyRegisteredEmailHash extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        try {
+            processRequest(request, response);
+        } catch (SQLException ex) {
+            Logger.getLogger(VerifyRegisteredEmailHash.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**

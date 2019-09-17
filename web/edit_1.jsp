@@ -4,7 +4,6 @@
     Author     : starixc
 --%>
 
-<%@page import="java.util.Calendar"%>
 <%@page import="com.database.dbConn"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -38,8 +37,8 @@
     <%
         String name = (String) session.getAttribute("name");
         String id = (String) session.getAttribute("ID");
-        if (name != null) {
-    %>
+        if(id!=null){
+        %>
     <%
         String ID, record_id, SerialNumber, SubCountyRegNo, SubPartnerID, RegDate, sex, age, Xray, treatmentdate, hivStatus, hivtestdate, artstatus, artdate, Mflcode, SubPartnerNom, smear0, genexpert, withinfacility, initialmodality;
 
@@ -96,7 +95,7 @@
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Welcome :<i class="glyphicon glyphicon-user"></i><%=name%> your ID:<%=id%></a>
+                    <a class="nav-link" href="#">Welcome :<i class="glyphicon glyphicon-user"></i><%=name%></a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" title="Help" data-toggle="modal" href="#help">
@@ -122,7 +121,7 @@
     <div class="nav-scroller bg-white box-shadow">
         <nav class="nav nav-underline">
             <a class="nav-link active" href="#">Dashboard</a>
-
+          
         </nav>
     </div>
 
@@ -140,13 +139,13 @@
                 <div class="container1">
                     <div class="row">
                         <div class="col-md-12">
-                            <div class="tab-content" id="nav-tabContent">
+                              <div class="tab-content" id="nav-tabContent">
                                 <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                                    <h3 class="border-bottom border-primary pb-2 mb-1 mt-2">UPDATING RECORD : <%=ID%></h3>
+                                    <h3 class="border-bottom border-primary pb-2 mb-1 mt-2">Editing <%=ID%></h3>
                                     <div class="text-white pt-3 bg-primary">
                                         <center><div id="loading" class='alert-success'> </div></center>
                                         <form id="form_data" autocomplete="off">
-                                            <input type="hidden" class="form-control col-md-6" id="id" name="id" value="<%=ID%>" disabled >
+                                            <input type="hidden" class="form-control col-md-6 " id="id" name="id" value="<%=ID%>" disabled >
                                             <div class="row offset-1">
                                                 <div class="col-md-5">
                                                     <div class="form-group">
@@ -193,15 +192,7 @@
                                             </div>
                                             <div class="row offset-1">
                                                 <div class="col-md-5">
-                                                    <div class="form-group">
-                                                        <label for="quarter">Quarter</label>
-                                                        <select class="form-control" id="quarter" name="quarter">
-                                                            <option value="1">1st Quarter(Oct-Dec)</option>
-                                                            <option value="2">2nd Quarter(Jan-March)</option>
-                                                            <option value="3">3rd Quarter(May-June)</option>
-                                                            <option value="4">4th Quarter(July-Sept)</option>
-                                                        </select>
-                                                    </div>
+
                                                     <div class="form-group">
                                                         <label for="sex">Sex</label>
                                                         <select class="form-control" id="sex" name="sex">
@@ -242,27 +233,6 @@
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
-                                                    <div class="form-group">
-                                                        <label for="year">Year</label>
-                                                        <select name="year" id="year" class="form-control"  >
-                                                            <option value='' >Choose year</option>
-                                                            <%
-
-                                                                Calendar cal = Calendar.getInstance();
-                                                                int curyear = cal.get(Calendar.YEAR);
-
-                                                                for (int a = curyear - 1; a <= curyear + 1; a++) {
-                                                                    out.println("<option value='" + a + "'>" + a + "</option>");
-                                                            %>
-
-
-                                                            <%
-                                                                }
-
-                                                            %>
-
-                                                        </select>
-                                                    </div>
                                                     <div class="form-group">
                                                         <label for="art">ART</label>
                                                         <select class="form-control" id="art" name="art">
@@ -326,8 +296,8 @@
                                             </div>
                                             <div class="row offset-1">
 
-                                                <div class="pull-left col-6"><a href="home.jsp" id="cancel" name="cancel" class="btn btn-warning btn-lg mb-2 ">Cancel</a></div>
-                                                <div class="pull-right col-6"><input type="submit" class="btn btn-success btn-lg mb-2" id="update_data" name="update_data"  value="Update"/></div>
+                                               <div class="pull-left col-6"><a href="home.jsp" id="cancel" name="cancel" class="btn btn-warning btn-lg mb-2 ">Cancel</a></div>
+                                                <div class="pull-right col-6"><input type="submit" class="btn btn-success btn-lg mb-2 " id="update_data" name="update_data"  value="Update"/></div>
                                             </div>
 
                                         </form>
@@ -337,7 +307,7 @@
                                         } catch (Exception e) {
                                             out.println(e);
                                         }
-                                    %>
+                               %>
                                 </div>
 
                             </div>
@@ -348,12 +318,10 @@
 
 
         </div>
-
+      
 
     </main>
-
-
-    <!-- Modal -->
+   <!-- Modal -->
     <div class="modal fade" id="help" tabindex="-1" role="dialog" aria-labelledby="Help" aria-hidden="true">
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
@@ -477,16 +445,16 @@
                                                                 });
 
 
-
+                                                               
                                                             });
     </script>
-    <script src="js/update.js"></script>
-
+     <script src="js/update.js"></script>
+  
     <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32" preserveAspectRatio="none" style="display: none; visibility: hidden; position: absolute; top: -100%; left: -100%;"><defs><style type="text/css"></style></defs><text x="0" y="2" style="font-weight:bold;font-size:2pt;font-family:Arial, Helvetica, Open Sans, sans-serif">32x32</text></svg>
-    <%
-        } else {
+<%
+        }else{
             response.sendRedirect("login.jsp");
         }
-    %>
+%>
 </body>
 </html>
