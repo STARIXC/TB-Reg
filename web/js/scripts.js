@@ -95,18 +95,15 @@ function pataregfacility() {
 }
 function checkEmail() {
 
-    //var subcounty = document.getElementById("subcounty").value;
+    var email = document.getElementById("email").value;
     $.ajax({
-        url: 'username_email_verification',
+        url: 'username_email_verification?subcounty=' + email,'
         type: 'post',
         dataType: 'html',
         success: function (data)
         {
-            $("#department").html(data.replace("<option value=''>Select facility</option>", ""));
-            var select = document.getElementById('department');
-            // select.size = select.length;
-            $('#department').select2();
-        }
+            $("#email").html(data.replace("<option value=''>Select facility</option>", ""));
+               }
     });
 }
 
