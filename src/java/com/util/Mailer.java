@@ -21,8 +21,8 @@ import javax.mail.internet.MimeMessage;
 public class Mailer {
 
     public static void sendEmailRegistrationLink(String to, String msg) {
-        final String user = "starixc@gmail.com";
-        final String pass = "28343911";
+        final String user = "aphiabackup@gmail.com";
+        final String pass = "plusaphia";
         //final String MAIL_SMTP_HOST = "localhost";
 
         //get the session object

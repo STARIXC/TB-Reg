@@ -56,6 +56,10 @@
         <servlet-name>VerifyRegisteredEmailHash</servlet-name>
         <servlet-class>com.controller.VerifyRegisteredEmailHash</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>username_email_verification</servlet-name>
+        <servlet-class>com.controller.username_email_verification</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getsubcounty</servlet-name>
         <url-pattern>/getsubcounty</url-pattern>
@@ -107,6 +111,10 @@
     <servlet-mapping>
         <servlet-name>VerifyRegisteredEmailHash</servlet-name>
         <url-pattern>/VerifyRegisteredEmailHash</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>username_email_verification</servlet-name>
+        <url-pattern>/username_email_verification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

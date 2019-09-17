@@ -85,11 +85,11 @@
                                         </div>
                                         <div class="form-group">
                                             <label> Email:</label>
-                                            <input type="text" name="email" id="email" required="" placeholder="Enter Email" class="form-control">
+                                            <input type="text" name="email" id="email" required="" placeholder="Enter Email" class="form-control" onblur="checkEmail();">
                                         </div>
                                         <div class="form-group">
                                             <label> User Name:</label>
-                                            <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control">
+                                            <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control" onblur="checkUsername();">
                                         </div>
                                         
                                         <div class="form-group">

@@ -7,7 +7,6 @@ package com.controller;
 
 import com.database.dbConn;
 import static com.util.Mailer.sendEmailRegistrationLink;
-import com.util.Setup;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -78,7 +77,7 @@ public class EmployeeServlet extends HttpServlet {
                 StringBuilder bodyText = new StringBuilder();
 
                 bodyText.append("<div>")
-                        .append("Dear user<br/></br>").append("Thank you for registration. Your Mail (")
+                        .append("Dear user<br/></br>").append("Thank you for registration. Your Mail (" )
                         .append(email).append("Please click <a href=\"")
                         .append(link)
                         .append("\">here</a> or open bellow link in browser<br/> ")
