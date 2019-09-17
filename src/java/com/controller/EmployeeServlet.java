@@ -7,6 +7,7 @@ package com.controller;
 
 import com.database.dbConn;
 import static com.util.Mailer.sendEmailRegistrationLink;
+import com.util.encrypt;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.security.MessageDigest;
@@ -35,6 +36,9 @@ public class EmployeeServlet extends HttpServlet {
         try {
             out = response.getWriter();
             session = request.getSession();
+            //Create messageDigest instance of md5
+                
+                  encrypt md = new encrypt();
             if (request.getParameter("register") != null)//request comming from index.jsp page, where register is button name.
             {
                 System.out.println("In Registration");
@@ -46,29 +50,17 @@ public class EmployeeServlet extends HttpServlet {
                 String email = request.getParameter("email");
                 String password = request.getParameter("password");
                 String hashcode = username + password;
-                String generatedps = null;
+                String generatedps ="";
+                String hashkey="";
                 final String MAIL_REGISTRATION_LINK = "http://localhost:8085/Tb_Reg/VerifyRegisteredEmailHash";
 
                 //String department=request.getParameter("department");
                 // String designation=request.getParameter("designation");
-                //Create messageDigest instance of md5
-                MessageDigest md = MessageDigest.getInstance("MD5");
-
+                
                 //add password byte to digest
-                md.update(password.getBytes());
-                md.update(hashcode.getBytes());
-                //get the hash byte
-                byte[] bytes = md.digest();
-                //this bytes[] has bytes in decimal format
-                //convert it to hexadecima format
-                StringBuilder sb = new StringBuilder();
-                StringBuilder hash = new StringBuilder();
-                for (int i = 0; i < bytes.length; i++) {
-                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                    hash.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                }
-                generatedps = sb.toString();
-                String hashkey = hash.toString();
+                 generatedps=md.getHashPass(password);
+                 hashkey=md.getHashPass(hashcode);
+                 
                 //byte[] messageDigest = md.digest()
                 SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");//storing today date
                 String todayDate = sdf.format(new Date());
@@ -113,21 +105,9 @@ public class EmployeeServlet extends HttpServlet {
                 /* Getting The Value From TextBox  */
                 String username = request.getParameter("username");
                 String password = request.getParameter("password");
-                String loginpass = null;
-                //Create messageDigest instance of md5
-                MessageDigest md = MessageDigest.getInstance("MD5");
-
-                //add password byte to digest
-                md.update(password.getBytes());
-                //get the hash byte
-                byte[] bytes = md.digest();
-                //this bytes[] has bytes in decimal format
-                //convert it to hexadecima format
-                StringBuilder sb = new StringBuilder();
-                for (int i = 0; i < bytes.length; i++) {
-                    sb.append(Integer.toString((bytes[i] & 0xff) + 0x100, 16).substring(1));
-                }
-                loginpass = sb.toString();
+                String loginpass = "";
+               
+                loginpass = md.getHashPass(password);
                 System.out.println(username + " " + password);
                 dbConn conn = new dbConn();
                 String sql = "select * from user where username='" + username + "' and password='" + loginpass + "'";
@@ -148,9 +128,9 @@ public class EmployeeServlet extends HttpServlet {
                     session.setAttribute("error", "Invalid Email and Password...");
                     response.sendRedirect("login.jsp");
                 }
-            } else if (request.getParameter("update") != null) {
+            }   /* else if (request.getParameter("update") != null) {
                 System.out.println("In Update");
-                /* Getting The Value From TextBox  */
+             
                 int id = Integer.parseInt(request.getParameter("id"));//getting value from hidden field textbox
                 String name = request.getParameter("name");
                 String email = request.getParameter("email");
@@ -162,7 +142,7 @@ public class EmployeeServlet extends HttpServlet {
                 String todayDate = sdf.format(new Date());
 
                 System.out.println(name + " " + email + " " + password + " " + department + " " + designation + " " + todayDate);
-                /* JDBC Connection Code  */
+                // JDBC Connection Code  
                 dbConn conn = new dbConn();
                 String sql = "update employee set name='" + name + "', email='" + email + "', password='" + password + "', department='" + department + "', designation='" + designation + "' where id=" + id + " ";
                 conn.pst = conn.conn.prepareStatement(sql);
@@ -175,7 +155,7 @@ public class EmployeeServlet extends HttpServlet {
                     out.println("Oops! Something went wrong...");
                 }
             }
-            /* else if(request.getParameter("delete")!=null)
+          else if(request.getParameter("delete")!=null)
             {
                 System.out.println("In Delete");
                 int id=Integer.parseInt(request.getParameter("id"));
