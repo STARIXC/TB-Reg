@@ -86,12 +86,12 @@
                                         <div class="form-group">
                                             <label> Email:</label>
                                             <input type="text" name="email" id="email" required="" placeholder="Enter Email" class="form-control" onblur="checkEmail();">
-                                            <span class="help-block">Please correct the error</span>
+                                            <span class="help-block" id="mailexist_err">Email Address already Registered</span>
                                         </div>
                                         <div class="form-group">
                                             <label> User Name:</label>
                                             <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control" onblur="checkUsername();">
-                                            <span class="help-block">Please correct the error</span>
+                                            <span class="help-block" id="usernameexits">Username Already Taken</span>
                                         </div>
                                         
                                         <div class="form-group">
