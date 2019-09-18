@@ -9,10 +9,6 @@
         <servlet-class>com.controller.savedata</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <servlet-class>com.controller.EmployeeServlet</servlet-class>
-    </servlet>
-    <servlet>
         <servlet-name>viewData</servlet-name>
         <servlet-class>com.controller.viewData</servlet-class>
     </servlet>
@@ -57,8 +53,8 @@
         <servlet-class>com.controller.VerifyRegisteredEmailHash</servlet-class>
     </servlet>
     <servlet>
-        <servlet-name>username_email_verification</servlet-name>
-        <servlet-class>com.controller.username_email_verification</servlet-class>
+        <servlet-name>username_verification</servlet-name>
+        <servlet-class>com.controller.username_verification</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>getsubcounty</servlet-name>
@@ -79,10 +75,6 @@
     <servlet-mapping>
         <servlet-name>savedata</servlet-name>
         <url-pattern>/savedata</url-pattern>
-    </servlet-mapping>
-    <servlet-mapping>
-        <servlet-name>EmployeeServlet</servlet-name>
-        <url-pattern>/EmployeeServlet</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
         <servlet-name>viewData</servlet-name>
@@ -113,8 +105,8 @@
         <url-pattern>/VerifyRegisteredEmailHash</url-pattern>
     </servlet-mapping>
     <servlet-mapping>
-        <servlet-name>username_email_verification</servlet-name>
-        <url-pattern>/username_email_verification</url-pattern>
+        <servlet-name>username_verification</servlet-name>
+        <url-pattern>/username_verification</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

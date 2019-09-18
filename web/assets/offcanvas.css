@@ -130,9 +130,7 @@ body {
 .error{
     background-color:red !important;
 }
-.form-group.has-error .help-block {
-    display: block;
-}
+
 
 .form-group .help-block {
     display: none;

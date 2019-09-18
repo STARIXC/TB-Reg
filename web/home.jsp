@@ -433,17 +433,6 @@
     <script src="assets/DT-Tables/js/jquery-3.3.1.min.js" ></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="assets/bootstrap/js/bootstrap.min.js" ></script>
-    <!--<script src="assets/DT-Tables/js/jquery.dataTables.min.js" ></script>
-    <script src="assets/DT-Tables/js/dataTables.bootstrap.min.js" ></script>
-    <script src="assets/DT-Tables/js/dataTables.responsive.min.js" ></script>
-    <script src="assets/DT-Tables/js/dataTables.buttons.min.js" ></script>
-    <script src="assets/DT-Tables/js/buttons.flash.min.js" ></script>
-    <script src="assets/DT-Tables/js/jszip.min.js" ></script>
-    <script src="assets/DT-Tables/js/pdfmake.min.js" ></script>
-    <script src="assets/DT-Tables/js/vfs_fonts.js" ></script>
-    <script src="assets/DT-Tables/js/buttons.html5.min.js" ></script>
-   
-    <script src="assets/DT-Tables/js/buttons.print.min.js" ></script>-->
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/additional/additional.js"></script>
     <script src="js/footable.js"></script>

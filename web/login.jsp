@@ -83,15 +83,15 @@
                                             <label> Last Name:</label>
                                             <input type="text" name="lname" id="lname" required="" placeholder="Enter Last Name" class="form-control">
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group has-error">
                                             <label> Email:</label>
                                             <input type="text" name="email" id="email" required="" placeholder="Enter Email" class="form-control" onblur="checkEmail();">
-                                            <span class="help-block text-danger" id="mailexist_err">Email Address already Registered</span>
+                                            <span class="help-block text-danger" id="mailexist_err"></span>
                                         </div>
-                                        <div class="form-group">
+                                        <div class="form-group has-error">
                                             <label> User Name:</label>
-                                            <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control" onblur="checkUsername();">
-                                            <span class="help-block text-danger" id="usernameexits">Username Already Taken</span>
+                                            <input type="text" name="username" id="username" required="" placeholder="Enter UserName i.e Fhi360" class="form-control" onblur="checkUsername();" >
+                                            <span class="help-block text-danger" id="usernameexits"></span>
                                         </div>
                                         
                                         <div class="form-group">
