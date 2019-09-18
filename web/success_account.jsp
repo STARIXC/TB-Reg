@@ -18,23 +18,28 @@
     </head>
       <body>
         <div class="container">
-            <div class="panel panel-default">
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3">
+                    <div class="panel panel-default">
                 <div class="panel-body">
                     <h1 class="text-center">Account Created successfully</h1>
                     <p class="text-center"> Access your email Address to activate the account</p>
     <center>
-        <img src="images/banner.PNG">
+        <img src="images/banner.PNG" class="img-responsive">
     </center><br><br>
     
                 </div>
             </div>
+                </div>
+            </div>
+            
         </div>
     
 </body>
     <script>
         var timer = setTimeout(function() {
             window.location.href="login.jsp";
-        }, 3000);
+        }, 5000);
     </script>
 
 </html>

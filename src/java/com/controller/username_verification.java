@@ -18,9 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * @author HSDSA
+ * @author starixc
  */
-public class username_email_verification extends HttpServlet {
+public class username_verification extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,18 +36,18 @@ public class username_email_verification extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-           String email= request.getParameter("email");
+             String username= request.getParameter("username");
             /* TODO output your page here. You may use following sample code. */
              dbConn conn = new dbConn();
-                String sql = "select * from user where email='" + email + "' ";
+                String sql = "select * from user where username='" + username + "' ";
                 //String sql="select * from employee where email='"+email+"' and password='"+password+"'";
                 conn.rs = conn.st.executeQuery(sql);
 
                 if (!conn.rs.next()) {
-                    out.println("<font color=green><b>"+email+" is available");
+                    out.println("<font color=green><b>"+username+" is available");
                
                 } else {
-                    out.println("<font color=red><b>"+email+" is already in use");
+                    out.println("<font color=red><b>"+username+" is already in use");
                 }
                 out.println();
         }
@@ -68,7 +68,7 @@ public class username_email_verification extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(username_email_verification.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(username_verification.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -86,7 +86,7 @@ public class username_email_verification extends HttpServlet {
         try {
             processRequest(request, response);
         } catch (SQLException ex) {
-            Logger.getLogger(username_email_verification.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(username_verification.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 

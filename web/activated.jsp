@@ -16,20 +16,28 @@
         <link rel="stylesheet" href="css/select2.min.css">
         <script src="backNoWork.js" type="text/javascript"></script>
     </head>
-      <body>
+    <body>
         <div class="container">
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <h1 class="text-center">Account verified successfully</h1>
-                    <p class="text-center"> Account Activated. Click on the button bellow to login</p>
-    <center>
-        <img src="images/banner.PNG">
-    </center><br><br>
-    <center><a  class="btn btn-success" role="button" href="login.jsp">Login Again.</a></center>
+            <div class="row">
+                <div class="col-md-6 col-md-offset-3 p-5">
+                    <div class="panel-body">
+                        <h1 class="text-center">Account verified successfully</h1>
+                        <p class="text-center">You will be redirected to the Login page ...</p>
+                        <center>
+                            <img src="images/banner.PNG">
+                        </center><br><br>
+                    </div>
                 </div>
             </div>
+
         </div>
-    
-</body>
+
+
+    </body>
+    <script>
+        var timer = setTimeout(function () {
+            window.location.href = "login.jsp";
+        }, 5000);
+    </script>
 
 </html>
