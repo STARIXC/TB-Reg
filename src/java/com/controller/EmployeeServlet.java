@@ -155,25 +155,7 @@ public class EmployeeServlet extends HttpServlet {
                     out.println("Oops! Something went wrong...");
                 }
             }
-          else if(request.getParameter("delete")!=null)
-            {
-                System.out.println("In Delete");
-                int id=Integer.parseInt(request.getParameter("id"));
-                //JDBC Connection Code // 
-                dbConn conn = new dbConn();
-                
-                String sql="delete from employee where id="+id+" " ;
-               status=conn.pst.executeUpdate(sql);
-                if(status>0)
-                {
-                    session.setAttribute("deleted", "Employee has been reloved Successfully..");
-                    response.sendRedirect("employees.jsp");
-                }
-                else
-                {
-                    out.println("Oops! Something went wrong...");
-                }
-            }*/
+        */
         } catch (Exception e) {
             out.println(e);
         } finally {
