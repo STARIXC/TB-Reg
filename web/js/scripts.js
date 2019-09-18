@@ -142,22 +142,7 @@ function checkUsername() {
         }
     });
 }
-function checkUsername() {
-    $('#usernameexits').html('<img src="images/25.gif"> loading...');
-    var username = document.getElementById("username").value;
-    $.ajax({
-        url: 'username_verification?username=' + username,
-                type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            setTimeout(function () {
-                $('#usernameexits').html(data);
-               // $('#form_data')[0].reset();
-            }, 2000);
-        }
-    });
-}
+
 
 
 
