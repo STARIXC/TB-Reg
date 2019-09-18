@@ -1,5 +1,5 @@
 function patasubcounty() {
-  var county = document.getElementById("county").value;
+    var county = document.getElementById("county").value;
     $.ajax({
         url: 'getsubcounty?county=' + county,
         type: 'post',
@@ -12,7 +12,7 @@ function patasubcounty() {
 
             //  App.init();   
         }
- });
+    });
 
 }
 function showTreatmentDate() {
@@ -94,19 +94,37 @@ function pataregfacility() {
     });
 }
 function checkEmail() {
-
+    $('#mailexist_err').html('<img src="images/25.gif"> loading...');
     var email = document.getElementById("email").value;
     $.ajax({
-        url: 'username_email_verification?subcounty=' + email,'
-        type: 'post',
+        url: 'username_email_verification?email=' + email,
+                type: 'post',
         dataType: 'html',
         success: function (data)
         {
-            $("#email").html(data.replace("<option value=''>Select facility</option>", ""));
-               }
+            setTimeout(function () {
+                $('#mailexist_err').html(data);
+               // $('#form_data')[0].reset();
+            }, 2000);
+        }
     });
 }
-
+function checkUsername() {
+    $('#usernameexits').html('<img src="images/25.gif"> loading...');
+    var username = document.getElementById("username").value;
+    $.ajax({
+        url: 'username_verification?username=' + username,
+                type: 'post',
+        dataType: 'html',
+        success: function (data)
+        {
+            setTimeout(function () {
+                $('#usernameexits').html(data);
+               // $('#form_data')[0].reset();
+            }, 2000);
+        }
+    });
+}
 
 
 
