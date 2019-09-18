@@ -40,7 +40,7 @@
         if(id!=null){
         %>
     <%
-        String ID, record_id, SerialNumber, SubCountyRegNo, SubPartnerID, RegDate, sex, age, Xray, treatmentdate, hivStatus, hivtestdate, artstatus, artdate, Mflcode, SubPartnerNom, smear0, genexpert, withinfacility, initialmodality;
+        String ID,record_id, SerialNumber, SubCountyRegNo, SubPartnerID, RegDate, sex, age, Xray, treatmentdate, hivStatus, hivtestdate, artstatus, artdate, Mflcode, SubPartnerNom, smear0, genexpert, withinfacility, initialmodality;
 
         dbConn conn = new dbConn();
     %>
@@ -71,7 +71,7 @@
                 genexpert = conn.rs.getString("genexpert");
                 withinfacility = conn.rs.getString("tested_within_facility");
                 initialmodality = conn.rs.getString("initial_modality");
-               String csql= "SELECT DistrictID FROM `SubPartnera` WHERE `CentreSanteId`='" + SubPartnerID + "'";
+           
 
     %>
 
@@ -185,7 +185,7 @@
                                                     <div class="form-group">
                                                         <label for="healthFaciities">Health Facilities</label>
                                                         <select class="form-control"  name='facility' id='facility' >
-                                                            <option id='facility_select' value='<%=SubPartnerNom%>' data-subpartnerid='<%=SubPartnerID%>' data-mfl='<%=Mflcode%>' data-facility='<%=SubPartnerNom%>' ><%=SubPartnerNom%> </option>
+                                                            <option  selected id='facility_select' value='<%=SubPartnerNom%>' data-subpartnerid='<%=SubPartnerID%>' data-mfl='<%=Mflcode%>' data-facility='<%=SubPartnerNom%>' ><%=SubPartnerNom%> </option>
                                                         </select>
                                                     </div>
                                                 </div>

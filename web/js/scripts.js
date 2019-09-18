@@ -15,6 +15,23 @@ function patasubcounty() {
     });
 
 }
+function patasubcounty_1() {
+  var county = document.getElementById("county").value;
+    $.ajax({
+        url: 'getsubcounty?county=' + county,
+        type: 'post',
+        dataType: 'html',
+        success: function (data)
+        {
+            $("#subcounty").html(data.replace("<option value=''>Select sub-county</option>", ""));
+            var select = document.getElementById('subcounty');
+            //select.size = select.length;
+
+            //  App.init();   
+        }
+ });
+
+}
 function showTreatmentDate() {
     var selectBox = document.getElelmentByID('hivStatus');
     var userInput = selectBox.options[selectBox.selectedIndex].value;
