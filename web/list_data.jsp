@@ -49,8 +49,8 @@
 
     <td>
 
-        <a class='btn btn-sm btn-success' title="Edit" href='edit.jsp?id=<%=ID%>'><i class="glyphicon glyphicon-edit"></i></a>
-        <a class='btn btn-sm btn-warning'title="Update" href='update.jsp?id=<%=ID%>'><i class="glyphicon glyphicon-open"></i></a>
+        <a class='btn btn-sm btn-success' title="Edit" href='edit.jsp?id=<%=ID%>&fid=<%=SubPartnerID%>'><i class="glyphicon glyphicon-edit"></i></a>
+       <!-- <a class='btn btn-sm btn-warning'title="Update" href='update.jsp?id=<%=ID%>'><i class="glyphicon glyphicon-open"></i></a>-->
 
     </td>
 </tr>

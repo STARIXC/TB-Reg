@@ -71,7 +71,7 @@
                 genexpert = conn.rs.getString("genexpert");
                 withinfacility = conn.rs.getString("tested_within_facility");
                 initialmodality = conn.rs.getString("initial_modality");
-
+               String csql= "SELECT DistrictID FROM `SubPartnera` WHERE `CentreSanteId`='" + SubPartnerID + "'";
 
     %>
 
