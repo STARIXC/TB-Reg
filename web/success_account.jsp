@@ -20,8 +20,8 @@
         <div class="container">
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <h1 class="text-center">Account verified successfully</h1>
-                    <p class="text-center"> Account Activated. Click on the button bellow to login</p>
+                    <h1 class="text-center">Account Created successfully</h1>
+                    <p class="text-center"> Access your email Address to activate the account</p>
     <center>
         <img src="images/banner.PNG">
     </center><br><br>
@@ -31,5 +31,6 @@
         </div>
     
 </body>
+
 
 </html>

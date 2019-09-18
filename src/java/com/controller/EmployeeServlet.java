@@ -95,7 +95,7 @@ public class EmployeeServlet extends HttpServlet {
                     session.setAttribute("username", username);
                     //Mailer.send(to, subject, msg);  
                     sendEmailRegistrationLink(email,msg);
-                    response.sendRedirect("home.jsp");
+                    response.sendRedirect("success_account.jsp");
 
                 } else {
                     out.println("Oops! Something went wrong...");
