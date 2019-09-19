@@ -16,7 +16,7 @@ function patasubcounty() {
 
 }
 function patasubcounty_1() {
-  var county = document.getElementById("county").value;
+    var county = document.getElementById("county").value;
     $.ajax({
         url: 'getsubcounty?county=' + county,
         type: 'post',
@@ -115,13 +115,13 @@ function checkEmail() {
     var email = document.getElementById("email").value;
     $.ajax({
         url: 'username_email_verification?email=' + email,
-                type: 'post',
+        type: 'post',
         dataType: 'html',
         success: function (data)
         {
             setTimeout(function () {
                 $('#mailexist_err').html(data);
-               // $('#form_data')[0].reset();
+                // $('#form_data')[0].reset();
             }, 2000);
         }
     });
@@ -131,14 +131,81 @@ function checkUsername() {
     var username = document.getElementById("username").value;
     $.ajax({
         url: 'username_verification?username=' + username,
-                type: 'post',
+        type: 'post',
         dataType: 'html',
         success: function (data)
         {
             setTimeout(function () {
                 $('#usernameexits').html(data);
-               // $('#form_data')[0].reset();
+                // $('#form_data')[0].reset();
             }, 2000);
+        }
+    });
+}
+
+function getData() {
+// $('#usernameexits').html('<img src="images/25.gif"> loading...');
+    var userid = document.getElementById("id").value;
+    $.ajax({
+        url: 'viewData?userid=' + userid,
+        type: 'post',
+        dataType: 'html',
+        success: function (data)
+        {
+            var json = jQuery.parseJSON(data);
+            //iterate the json Arat and print it in tarbular format
+            $.each(json, function (idx, obj) {
+                $('#database tr:last').after(
+//                   ID = conn.rs.getString("id");
+//            SerialNumber = conn.rs.getString("serialno");
+//            SubPartnerID = conn.rs.getString("SubPartnerID");
+//            SubCountyRegNo = conn.rs.getString("subcounty_regno");
+//            RegDate = conn.rs.getString("registrationdate");
+//            sex = conn.rs.getString("sex");
+//            age = conn.rs.getString("age");
+//            Xray = conn.rs.getString("xray");
+//            treatmentdate = conn.rs.getString("treatmentdate");
+//            hivStatus = conn.rs.getString("hivstatus");
+//            hivtestdate = conn.rs.getString("hivtestdate");
+//            artstatus = conn.rs.getString("artstatus");
+//            artdate = conn.rs.getString("artdate");
+//            Mflcode = conn.rs.getString("Mflcode");
+//            SubPartnerNom = conn.rs.getString("SubPartnerNom");
+//            smear0 = conn.rs.getString("smear0");
+//            genexpert = conn.rs.getString("genexpert");
+//            withinfacility = conn.rs.getString("tested_within_facility");
+//            initialmodality = conn.rs.getString("initial_modality");  
+
+
+                        '<tr><td>'
+                        + obj.SerialNumber +
+                        '</td><td>'
+                        + obj.SubPartnerID +
+                        '</td><td>'
+                        + obj.SubCountyRegNo +
+                        '</td><td>'
+                        + obj.Mflcode +
+                        '</td><td>'
+                        + obj.SubPartnerNom +
+                        '</td><td>'
+                        + obj.hivStatus +
+                        '</td><td>'
+                        + obj.artStatus +
+                        '</td><td>'
+                        + obj.sex +
+                        '</td><td>'
+                        + obj.sex +
+                        '</td><td>'
+                        + obj.age +
+                        '</td><td>'
+                        + obj.registrationdate +
+                        '</td><td>'
+                        ' <a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + id + '""><i class="glyphicon glyphicon-edit"></i></a>'
+                        + '</td></tr>'
+
+
+                        );
+            });
         }
     });
 }
@@ -151,5 +218,3 @@ function checkUsername() {
 
 
 
-
-    

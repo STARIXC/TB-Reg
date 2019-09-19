@@ -324,8 +324,8 @@
                                     <h6 class="border-bottom border-gray pb-2 mb-0 mt-2">Tb Register Records</h6>
 
                                     <div class="text-muted pt-3">
-                                        <div class="table-responsive toggle-circle-filled" id="datat">
-                                            <table class="table table-bordered footable footable-1 footable-filtering footable-filtering-right footable-paging footable-paging-center breakpoint breakpoint-xs" data-paging="true" data-filtering="true" data-sorting="true" style="display: table;">
+                                        <div class="table-responsive toggle-circle-filled" >
+                                            <table id="datat" class="table table-bordered footable footable-1 footable-filtering footable-filtering-right footable-paging footable-paging-center breakpoint breakpoint-xs" data-paging="true" data-filtering="true" data-sorting="true" style="display: table;">
                                                 <thead>
 
                                                     <tr>
@@ -466,6 +466,7 @@
                                                                 window.location.reload();
                                                                 //clearweeklyfields();
                                                             });
+                                                            getData();
 
     </script>
 </body>

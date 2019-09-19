@@ -8,6 +8,7 @@ package com.controller;
 import com.database.dbConn;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +16,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.json.*;
 
 /**
  *
@@ -38,33 +40,46 @@ public class viewData extends HttpServlet {
            
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-
+            String data="";
+            JSONObject jsonobject= null;
+            JSONArray jsonArray = new JSONArray();
             //query
             String sql = "SELECT * FROM tibu_tb_raw ORDER BY `timestamp` DESC";
 
             dbConn conn = new dbConn();
-
+            
             conn.rs = conn.st.executeQuery(sql);
 
-            String data = "<table id='tb_report_table' class='table table-striped table-bordered' style='width:100%'><thead><tr><th>SubPartner ID</th><th>Registration Date</th><th>HIV Status</th> <th>MFL Code</th><th>Facility Name</th><th>Edit</th></tr></thead><tbody> ";
+            //String data = "<table id='tb_report_table' class='table table-striped table-bordered' style='width:100%'><thead><tr><th>SubPartner ID</th><th>Registration Date</th><th>HIV Status</th> <th>MFL Code</th><th>Facility Name</th><th>Edit</th></tr></thead><tbody> ";
 
             while (conn.rs.next()) {
                 String id = conn.rs.getString("id");
-                data += "<tr>"
-                        + "<td>" + conn.rs.getString("SubPartnerID") + "</td>"
-                        + "<td>" + conn.rs.getString("registrationdate") + "</td>"
-                        + "<td>" + conn.rs.getString("hivstatus") + "</td>"
-                        + "<td>" + conn.rs.getString("Mflcode") + "</td>"
-                        + "<td>" + conn.rs.getString("SubPartnerNom") + "</td>"
-                        + "<td>"
-                        + "<a class='btn btn-small btn-primary btn-edit' href='edit.jsp?id=" + id + "'>Edit</a>"
-                        + "</td>"
-                        + "</tr>";
+                ResultSetMetaData metaData= conn.rs.getMetaData();
+                jsonobject = new JSONObject();
+                for (int  i =0;i < metaData.getColumnCount(); i++) {
+                    jsonobject.put(metaData.getColumnLabel(i+1), conn.rs.getObject(i+1));
+                }
+                jsonArray.put(jsonobject);
+                
+//                data += "<tr>"
+//                        + "<td>" + conn.rs.getString("SubPartnerID") + "</td>"
+//                        + "<td>" + conn.rs.getString("registrationdate") + "</td>"
+//                        + "<td>" + conn.rs.getString("hivstatus") + "</td>"
+//                        + "<td>" + conn.rs.getString("Mflcode") + "</td>"
+//                        + "<td>" + conn.rs.getString("SubPartnerNom") + "</td>"
+//                        + "<td>"
+//                        + "<a class='btn btn-small btn-primary btn-edit' href='edit.jsp?id=" + id + "'>Edit</a>"
+//                        + "</td>"
+//                        + "</tr>";
 
                 //data+="<li>"+conn.rs.getString("SubPartnerNom")+" </li>";
             }
-            data += "</tbody></table>";
-
+            if (jsonArray.length()>0) {
+                data =jsonArray.toString();
+             
+            }
+           // data += "</tbody></table>";
+           System.out.println(data);
             out.println(data);
             out.close();
         } catch (SQLException ex) {
