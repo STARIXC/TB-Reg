@@ -155,6 +155,7 @@ function getData() {
             var json = jQuery.parseJSON(data);
             //iterate the json Arat and print it in tarbular format
             $.each(json, function (idx, obj) {
+                
                 $('#database tr:last').after(
 
                         '<tr><td>'
@@ -191,7 +192,49 @@ function getData() {
 }
 getData();
 
+function loadSavedRecordData(id, Mflcode) {
+    //load from tb_data db where id is as selected  
+     $.ajax({
+        url: 'viewData?userid=' + userid,
+        type: 'post',
+        dataType: 'json',
+        success: function (data)
+        {
+            var doc = jQuery.parseJSON(data);
+            //iterate the json Arat and print it in tarbular format
+             //populate div with respective content
+        $("#rowid").val(id);
 
+        //$('select#facilityname').find("option[value='"+mflanddates[0]+"_"+facility+"']").prop('selected', true); 
+        $("#serialNumber").val(doc.serialno);
+        $("#dateOfRegistration").val(doc.registrationdate);
+        $("#subCountyRegNo").val(doc.subcounty_regno);
+        //$("#county").val(doc.hiv_pos_target_adult);
+        // $("#subcounty").val(doc.hiv_pos_target_total);
+        $('select#facility_select').find("option[value='" + doc.subPartnerNom + "']").prop('selected', true);
+        $('select#sex').find("option[value='" + doc.sex + "']").prop('selected', true);
+        $("#ageOnRegistration").val(doc.age);
+        $("#xray").val(doc.xray);
+        $('select#hivStatus').find("option[value='" + doc.hivstatus + "']").prop('selected', true);
+        $("#hivTestDate").val(doc.hivtestdate);
+        $("#dateTreatmentStarted").val(doc.treatmentdate);
+        $('select#art').find("option[value='" + doc.artstatus + "']").prop('selected', true);
+        $("#artdate").val(doc.artdate);
+        $('select#sputumSmear').find("option[value='" + doc.smear0 + "']").prop('selected', true);
+        $("#generalExpert").val(doc.genexpert);
+        $("#withinFacility").val(doc.tested_within_facility);
+        $('select#hivModality').find("option[value='" + doc.initial_modality + "']").prop('selected', true);
+
+        $("#save_data").hide();
+        $("#updatebutton").show();
+
+               // die();
+            });
+        }
+    });
+  
+
+}
 
 
 

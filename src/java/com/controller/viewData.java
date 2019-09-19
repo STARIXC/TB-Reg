@@ -35,55 +35,40 @@ public class viewData extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-
-        try {
-            request.setCharacterEncoding("utf8");
-            response.setCharacterEncoding("utf8");
-            response.setContentType("application/json");
-            //response.setContentType("text/html;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            String data = "";
-            JSONObject jsonobject = null;
-            JSONArray jsonArray = new JSONArray();
-            //query
-            String userid = request.getParameter("userid");
-            //query
-
-            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='" + userid + "' ORDER BY `timestamp` DESC";
-
+        String user_id="";
+        
+        try { 
+            
+            user_id = request.getParameter("userid");
+            System.out.println("User ID is: "+user_id);
+           //query
+            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='" + user_id + "' ORDER BY `timestamp` DESC";
             dbConn conn = new dbConn();
-
             conn.rs = conn.st.executeQuery(sql);
+            System.out.println("got respose");
+            //JSOn DATa VAriables
+            JSONArray json = new JSONArray();
+            ResultSetMetaData metadata = conn.rs.getMetaData();
+            int numColumns = metadata.getColumnCount();
 
             //String data = "<table id='tb_report_table' class='table table-striped table-bordered' style='width:100%'><thead><tr><th>SubPartner ID</th><th>Registration Date</th><th>HIV Status</th> <th>MFL Code</th><th>Facility Name</th><th>Edit</th></tr></thead><tbody> ";
             while (conn.rs.next()) {
-                String id = conn.rs.getString("id");
-                ResultSetMetaData metaData = conn.rs.getMetaData();
-                jsonobject = new JSONObject();
-                for (int i = 0; i < metaData.getColumnCount(); i++) {
-                    jsonobject.put(metaData.getColumnLabel(i + 1), conn.rs.getObject(i + 1));
+              JSONObject obj = new JSONObject();//extend HashMap
+                for (int i = 0; i <= numColumns; i++) {
+                   String column_name=metadata.getColumnName(i);
+                   obj.put(column_name, conn.rs.getObject(column_name));
+                   System.out.println("conn.rs.getObject('" + column_name + "')........." + conn.rs.getObject(column_name));
                 }
-                jsonArray.put(jsonobject);
-
-//                data += "<tr>"
-//                        + "<td>" + conn.rs.getString("SubPartnerID") + "</td>"
-//                        + "<td>" + conn.rs.getString("registrationdate") + "</td>"
-//                        + "<td>" + conn.rs.getString("hivstatus") + "</td>"
-//                        + "<td>" + conn.rs.getString("Mflcode") + "</td>"
-//                        + "<td>" + conn.rs.getString("SubPartnerNom") + "</td>"
-//                        + "<td>"
-//                        + "<a class='btn btn-small btn-primary btn-edit' href='edit.jsp?id=" + id + "'>Edit</a>"
-//                        + "</td>"
-//                        + "</tr>";
-                //data+="<li>"+conn.rs.getString("SubPartnerNom")+" </li>";
+              
+              System.out.println("Added JSON object to JSON Array..");
+            
             }
-            if (jsonArray.length() > 0) {
-                data = jsonArray.toString();
-
-            }
+            response.setContentType("application/json;charset=UTF-8");
+            PrintWriter out = response.getWriter();
+            
             // data += "</tbody></table>";
-            System.out.println(data);
-            out.println(data);
+            System.out.println(json);
+            out.println(json);
             out.close();
         } catch (SQLException ex) {
             Logger.getLogger(getfacility.class.getName()).log(Level.SEVERE, null, ex);
