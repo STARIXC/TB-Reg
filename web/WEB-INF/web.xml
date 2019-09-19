@@ -37,6 +37,10 @@
         <servlet-class>com.controller.save_data</servlet-class>
     </servlet>
     <servlet>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <servlet-class>com.controller.EmployeeServlet</servlet-class>
+    </servlet>
+    <servlet>
         <servlet-name>updatedata</servlet-name>
         <servlet-class>com.controller.updatedata</servlet-class>
     </servlet>
@@ -115,6 +119,10 @@
     <servlet-mapping>
         <servlet-name>username_email_verification</servlet-name>
         <url-pattern>/username_email_verification</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>EmployeeServlet</servlet-name>
+        <url-pattern>/EmployeeServlet</url-pattern>
     </servlet-mapping>
    
     <session-config>
