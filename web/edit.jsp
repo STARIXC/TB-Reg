@@ -22,9 +22,7 @@
     <link href="assets/bootstrap/css/bootstrap-glyphicons.min.css" rel="stylesheet" type="text/css" />
     <link href="assets/bootstrap/maps/glyphicons-fontawesome.min.css" rel="stylesheet" type="text/css" />
     <link rel="stylesheet" href="css/footable.bootstrap.css">
-    <!--<link rel="stylesheet" href="assets/DT-Tables/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="assets/DT-Tables/css/responsive.dataTables.min.css">
-    <link rel="stylesheet" href="assets/DT-Tables/css/buttons.dataTables.min.css">-->
+    
     <link rel="stylesheet" href="assets/bootstrap/css/bootstrap-formhelpers.min.css">
     <link rel="stylesheet" href="assets/calender/lib/jquery-ui.min.css">
     <!-- Custom styles for this template -->

@@ -189,7 +189,7 @@ function getData() {
         }
     });
 }
-//getData();
+getData();
 
 
 

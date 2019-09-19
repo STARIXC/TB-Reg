@@ -37,33 +37,34 @@ public class viewData extends HttpServlet {
             throws ServletException, IOException {
 
         try {
-           
-            response.setContentType("text/html;charset=UTF-8");
+            request.setCharacterEncoding("utf8");
+            response.setCharacterEncoding("utf8");
+            response.setContentType("application/json");
+            //response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-            String data="";
-            JSONObject jsonobject= null;
+            String data = "";
+            JSONObject jsonobject = null;
             JSONArray jsonArray = new JSONArray();
             //query
-              String userid=request.getParameter("userid");
+            String userid = request.getParameter("userid");
             //query
-         
-            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='"+userid+"' ORDER BY `timestamp` DESC";
+
+            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='" + userid + "' ORDER BY `timestamp` DESC";
 
             dbConn conn = new dbConn();
-            
+
             conn.rs = conn.st.executeQuery(sql);
 
             //String data = "<table id='tb_report_table' class='table table-striped table-bordered' style='width:100%'><thead><tr><th>SubPartner ID</th><th>Registration Date</th><th>HIV Status</th> <th>MFL Code</th><th>Facility Name</th><th>Edit</th></tr></thead><tbody> ";
-
             while (conn.rs.next()) {
                 String id = conn.rs.getString("id");
-                ResultSetMetaData metaData= conn.rs.getMetaData();
+                ResultSetMetaData metaData = conn.rs.getMetaData();
                 jsonobject = new JSONObject();
-                for (int  i =0;i < metaData.getColumnCount(); i++) {
-                    jsonobject.put(metaData.getColumnLabel(i+1), conn.rs.getObject(i+1));
+                for (int i = 0; i < metaData.getColumnCount(); i++) {
+                    jsonobject.put(metaData.getColumnLabel(i + 1), conn.rs.getObject(i + 1));
                 }
                 jsonArray.put(jsonobject);
-                
+
 //                data += "<tr>"
 //                        + "<td>" + conn.rs.getString("SubPartnerID") + "</td>"
 //                        + "<td>" + conn.rs.getString("registrationdate") + "</td>"
@@ -74,15 +75,14 @@ public class viewData extends HttpServlet {
 //                        + "<a class='btn btn-small btn-primary btn-edit' href='edit.jsp?id=" + id + "'>Edit</a>"
 //                        + "</td>"
 //                        + "</tr>";
-
                 //data+="<li>"+conn.rs.getString("SubPartnerNom")+" </li>";
             }
-            if (jsonArray.length()>0) {
-                data =jsonArray.toString();
-             
+            if (jsonArray.length() > 0) {
+                data = jsonArray.toString();
+
             }
-           // data += "</tbody></table>";
-           System.out.println(data);
+            // data += "</tbody></table>";
+            System.out.println(data);
             out.println(data);
             out.close();
         } catch (SQLException ex) {
