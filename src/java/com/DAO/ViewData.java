@@ -30,9 +30,9 @@ public class ViewData extends HttpServlet {
         try {
             response.setContentType("text/html;charset=UTF-8");
             PrintWriter out = response.getWriter();
-
+            String userid=request.getParameter("userid");
             //query
-            String sql = "SELECT * FROM tibu_tb_raw ";
+            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='"+userid+"'";
 
             dbConn conn = new dbConn();
 
