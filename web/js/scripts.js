@@ -149,33 +149,13 @@ function getData() {
     $.ajax({
         url: 'viewData?userid=' + userid,
         type: 'post',
-        dataType: 'html',
+        dataType: 'json',
         success: function (data)
         {
             var json = jQuery.parseJSON(data);
             //iterate the json Arat and print it in tarbular format
             $.each(json, function (idx, obj) {
                 $('#database tr:last').after(
-//                   ID = conn.rs.getString("id");
-//            SerialNumber = conn.rs.getString("serialno");
-//            SubPartnerID = conn.rs.getString("SubPartnerID");
-//            SubCountyRegNo = conn.rs.getString("subcounty_regno");
-//            RegDate = conn.rs.getString("registrationdate");
-//            sex = conn.rs.getString("sex");
-//            age = conn.rs.getString("age");
-//            Xray = conn.rs.getString("xray");
-//            treatmentdate = conn.rs.getString("treatmentdate");
-//            hivStatus = conn.rs.getString("hivstatus");
-//            hivtestdate = conn.rs.getString("hivtestdate");
-//            artstatus = conn.rs.getString("artstatus");
-//            artdate = conn.rs.getString("artdate");
-//            Mflcode = conn.rs.getString("Mflcode");
-//            SubPartnerNom = conn.rs.getString("SubPartnerNom");
-//            smear0 = conn.rs.getString("smear0");
-//            genexpert = conn.rs.getString("genexpert");
-//            withinfacility = conn.rs.getString("tested_within_facility");
-//            initialmodality = conn.rs.getString("initial_modality");  
-
 
                         '<tr><td>'
                         + obj.SerialNumber +
@@ -199,17 +179,17 @@ function getData() {
                         + obj.age +
                         '</td><td>'
                         + obj.registrationdate +
-                        '</td><td>'
-                        ' <a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + id + '""><i class="glyphicon glyphicon-edit"></i></a>'
+                        '</td><td><a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + obj.id + '""><i class="glyphicon glyphicon-edit"></i></a>'
                         + '</td></tr>'
 
 
                         );
+               // die();
             });
         }
     });
 }
-
+//getData();
 
 
 

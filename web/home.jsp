@@ -344,7 +344,7 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    <%//@ include file = "list_data.jsp" %>
+                                                    <%@ include file = "list_data.jsp" %>
                                                     <!----data from  db table---->
 
                                                 </tbody>
@@ -466,7 +466,7 @@
                                                                 window.location.reload();
                                                                 //clearweeklyfields();
                                                             });
-                                                            getData();
+                                                           
 
     </script>
 </body>
