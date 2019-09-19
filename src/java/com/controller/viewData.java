@@ -44,7 +44,10 @@ public class viewData extends HttpServlet {
             JSONObject jsonobject= null;
             JSONArray jsonArray = new JSONArray();
             //query
-            String sql = "SELECT * FROM tibu_tb_raw ORDER BY `timestamp` DESC";
+              String userid=request.getParameter("userid");
+            //query
+         
+            String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='"+userid+"' ORDER BY `timestamp` DESC";
 
             dbConn conn = new dbConn();
             
