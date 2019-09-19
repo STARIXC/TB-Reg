@@ -158,8 +158,8 @@
                                     <div class="text-white pl-5 pt-3 bg-primary">
                                         <div class="row offset-0 p-2">
 
-
-                                            <form method="POST"  id="form_data" autocomplete="off" validate >
+                                            <div class="col-md-12">
+                                                <form method="POST"  id="form_data" autocomplete="off" validate >
 
                                                 <div class="row offset-0 p-2">
                                                     <input type="hidden" name="id" id="id" value="<%=id%>">
@@ -317,6 +317,8 @@
                                                 </div>
 
                                             </form>
+                                            </div>
+                                            
                                         </div>
                                     </div>
                                 </div>
