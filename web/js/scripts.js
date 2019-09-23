@@ -143,98 +143,98 @@ function checkUsername() {
     });
 }
 
-function getData() {
-// $('#usernameexits').html('<img src="images/25.gif"> loading...');
-    var userid = document.getElementById("id").value;
-    $.ajax({
-        url: 'viewData?userid=' + userid,
-        type: 'post',
-        dataType: 'json',
-        success: function (data)
-        {
-            var json = jQuery.parseJSON(data);
-            //iterate the json Arat and print it in tarbular format
-            $.each(json, function (idx, obj) {
-                
-                $('#database tr:last').after(
+//function getData() {
+//// $('#usernameexits').html('<img src="images/25.gif"> loading...');
+//    var userid = document.getElementById("id").value;
+//    $.ajax({
+//        url: 'viewData?userid=' + userid,
+//        type: 'post',
+//        dataType: 'json',
+//        success: function (data)
+//        {
+//            var json = jQuery.parseJSON(data);
+//            //iterate the json Arat and print it in tarbular format
+//            $.each(json, function (idx, obj) {
+//                
+//                $('#database tr:last').after(
+//
+//                        '<tr><td>'
+//                        + obj.SerialNumber +
+//                        '</td><td>'
+//                        + obj.SubPartnerID +
+//                        '</td><td>'
+//                        + obj.SubCountyRegNo +
+//                        '</td><td>'
+//                        + obj.Mflcode +
+//                        '</td><td>'
+//                        + obj.SubPartnerNom +
+//                        '</td><td>'
+//                        + obj.hivStatus +
+//                        '</td><td>'
+//                        + obj.artStatus +
+//                        '</td><td>'
+//                        + obj.sex +
+//                        '</td><td>'
+//                        + obj.sex +
+//                        '</td><td>'
+//                        + obj.age +
+//                        '</td><td>'
+//                        + obj.registrationdate +
+//                        '</td><td><a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + obj.id + '""><i class="glyphicon glyphicon-edit"></i></a>'
+//                        + '</td></tr>'
+//
+//
+//                        );
+//               // die();
+//            });
+//        }
+//    });
+//}
+//getData();
 
-                        '<tr><td>'
-                        + obj.SerialNumber +
-                        '</td><td>'
-                        + obj.SubPartnerID +
-                        '</td><td>'
-                        + obj.SubCountyRegNo +
-                        '</td><td>'
-                        + obj.Mflcode +
-                        '</td><td>'
-                        + obj.SubPartnerNom +
-                        '</td><td>'
-                        + obj.hivStatus +
-                        '</td><td>'
-                        + obj.artStatus +
-                        '</td><td>'
-                        + obj.sex +
-                        '</td><td>'
-                        + obj.sex +
-                        '</td><td>'
-                        + obj.age +
-                        '</td><td>'
-                        + obj.registrationdate +
-                        '</td><td><a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + obj.id + '""><i class="glyphicon glyphicon-edit"></i></a>'
-                        + '</td></tr>'
-
-
-                        );
-               // die();
-            });
-        }
-    });
-}
-getData();
-
-function loadSavedRecordData(id, Mflcode) {
-    //load from tb_data db where id is as selected  
-     $.ajax({
-        url: 'viewData?userid=' + userid,
-        type: 'post',
-        dataType: 'json',
-        success: function (data)
-        {
-            var doc = jQuery.parseJSON(data);
-            //iterate the json Arat and print it in tarbular format
-             //populate div with respective content
-        $("#rowid").val(id);
-
-        //$('select#facilityname').find("option[value='"+mflanddates[0]+"_"+facility+"']").prop('selected', true); 
-        $("#serialNumber").val(doc.serialno);
-        $("#dateOfRegistration").val(doc.registrationdate);
-        $("#subCountyRegNo").val(doc.subcounty_regno);
-        //$("#county").val(doc.hiv_pos_target_adult);
-        // $("#subcounty").val(doc.hiv_pos_target_total);
-        $('select#facility_select').find("option[value='" + doc.subPartnerNom + "']").prop('selected', true);
-        $('select#sex').find("option[value='" + doc.sex + "']").prop('selected', true);
-        $("#ageOnRegistration").val(doc.age);
-        $("#xray").val(doc.xray);
-        $('select#hivStatus').find("option[value='" + doc.hivstatus + "']").prop('selected', true);
-        $("#hivTestDate").val(doc.hivtestdate);
-        $("#dateTreatmentStarted").val(doc.treatmentdate);
-        $('select#art').find("option[value='" + doc.artstatus + "']").prop('selected', true);
-        $("#artdate").val(doc.artdate);
-        $('select#sputumSmear').find("option[value='" + doc.smear0 + "']").prop('selected', true);
-        $("#generalExpert").val(doc.genexpert);
-        $("#withinFacility").val(doc.tested_within_facility);
-        $('select#hivModality').find("option[value='" + doc.initial_modality + "']").prop('selected', true);
-
-        $("#save_data").hide();
-        $("#updatebutton").show();
-
-               // die();
-            });
-        }
-    });
-  
-
-}
+//function loadSavedRecordData(id, Mflcode) {
+//    //load from tb_data db where id is as selected  
+//     $.ajax({
+//        url: 'viewData?userid=' + userid,
+//        type: 'post',
+//        dataType: 'json',
+//        success: function (data)
+//        {
+//            var doc = jQuery.parseJSON(data);
+//            //iterate the json Arat and print it in tarbular format
+//             //populate div with respective content
+//        $("#rowid").val(id);
+//
+//        //$('select#facilityname').find("option[value='"+mflanddates[0]+"_"+facility+"']").prop('selected', true); 
+//        $("#serialNumber").val(doc.serialno);
+//        $("#dateOfRegistration").val(doc.registrationdate);
+//        $("#subCountyRegNo").val(doc.subcounty_regno);
+//        //$("#county").val(doc.hiv_pos_target_adult);
+//        // $("#subcounty").val(doc.hiv_pos_target_total);
+//        $('select#facility_select').find("option[value='" + doc.subPartnerNom + "']").prop('selected', true);
+//        $('select#sex').find("option[value='" + doc.sex + "']").prop('selected', true);
+//        $("#ageOnRegistration").val(doc.age);
+//        $("#xray").val(doc.xray);
+//        $('select#hivStatus').find("option[value='" + doc.hivstatus + "']").prop('selected', true);
+//        $("#hivTestDate").val(doc.hivtestdate);
+//        $("#dateTreatmentStarted").val(doc.treatmentdate);
+//        $('select#art').find("option[value='" + doc.artstatus + "']").prop('selected', true);
+//        $("#artdate").val(doc.artdate);
+//        $('select#sputumSmear').find("option[value='" + doc.smear0 + "']").prop('selected', true);
+//        $("#generalExpert").val(doc.genexpert);
+//        $("#withinFacility").val(doc.tested_within_facility);
+//        $('select#hivModality').find("option[value='" + doc.initial_modality + "']").prop('selected', true);
+//
+//        $("#save_data").hide();
+//        $("#updatebutton").show();
+//
+//               // die();
+//            });
+//        }
+//    });
+//  
+//
+//}
 
 
 
