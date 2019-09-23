@@ -68,6 +68,10 @@
         <servlet-name>InsertData</servlet-name>
         <servlet-class>com.controller.InsertData</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>tets</servlet-name>
+        <servlet-class>com.controller.tets</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getsubcounty</servlet-name>
         <url-pattern>/getsubcounty</url-pattern>
@@ -131,6 +135,10 @@
     <servlet-mapping>
         <servlet-name>InsertData</servlet-name>
         <url-pattern>/InsertData</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>tets</servlet-name>
+        <url-pattern>/tets</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
