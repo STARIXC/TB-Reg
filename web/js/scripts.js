@@ -62,8 +62,7 @@ function displayData() {
         url: './viewData',
         type: 'GET',
         dataType: 'json',
-        success: function (data)
-        {
+        success: function (data){
             if (data.data.length) {
                 $.each(data.data, function (i, data) {
 
@@ -97,11 +96,6 @@ function displayData() {
             } else {
           $('#databody').html("No results");
             }
-
-
-            //  $("#data").html(data);
-            //  $('#tb_report_table').DataTable();
-            // $('#tb_report_table1').DataTable();
 
         },
         error: function (error) {
