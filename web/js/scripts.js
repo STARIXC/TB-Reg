@@ -30,16 +30,33 @@ function patasubcounty_1() {
         }
     });
 }
-function showTreatmentDate() {
-    var selectBox = document.getElelmentByID('hivStatus');
-    var userInput = selectBox.options[selectBox.selectedIndex].value;
-    if (userInput === 'Pos') {
-        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
-    } else {
-        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
+//function showTreatmentDate() {
+//    var selectBox = document.getElelmentByID('hivStatus');
+//    var userInput = selectBox.options[selectBox.selectedIndex].value;
+//    if (userInput === 'Pos') {
+//        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
+//    } else {
+//        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
+//    }
+//    return false;
+//}
+function showTreatmentDate(){
+    var outcome = document.getElementById("hivStatus");
+    if(outcome.value === "Pos" ){
+        document.getElementById("dttreatment").disabled = false;
+    }else{
+        document.getElementById("dttreatment").disabled = true;
     }
-    return false;
 }
+function disableEnabled(){
+    var outcome = document.getElementById("hivStatus");
+    if(outcome.value === "Pos" ||outcome.value === "Restarted on Art" ){
+        document.getElementById("dateResumed").disabled = false;
+    }else{
+        document.getElementById("dateResumed").disabled = true;
+    }
+}
+
 function patafacility() {
 
     var subcounty = document.getElementById("subcounty").value;
