@@ -38,7 +38,7 @@
         if(id!=null){
         %>
     <%
-        String ID,record_id, SerialNumber, SubCountyRegNo, SubPartnerID, RegDate, sex, age, Xray, treatmentdate, hivStatus, hivtestdate, artstatus, artdate, Mflcode, SubPartnerNom, smear0, genexpert, withinfacility, initialmodality;
+        String ID,record_id, SerialNumber,DistrictID,CountyID, SubCountyRegNo, SubPartnerID,County,District, RegDate, sex, age, Xray, treatmentdate, hivStatus, hivtestdate, artstatus, artdate, Mflcode, SubPartnerNom, smear0, genexpert, withinfacility, initialmodality;
 
         dbConn conn = new dbConn();
     %>
@@ -46,7 +46,9 @@
         try {
             record_id = request.getParameter("id");
             //query
-            String sql = "SELECT * FROM `tibu_tb_raw` WHERE `id`='" + record_id + "'";
+            //String query ="select * from author inner join book on author.author_id = book.author_id ";
+            String sql ="select * from tibu_tb_raw inner join subpartnera on tibu_tb_raw.SubPartnerID = subpartnera.SubPartnerID inner join district on subpartnera.DistrictID inner county on district.CountyID WHERE `id`='" + record_id + "'";
+           // String sql = "SELECT * FROM `tibu_tb_raw` WHERE `id`='" + record_id + "'";
             conn.rs = conn.st.executeQuery(sql);
 
             while (conn.rs.next()) {
@@ -65,6 +67,10 @@
                 artdate = conn.rs.getString("artdate");
                 Mflcode = conn.rs.getString("Mflcode");
                 SubPartnerNom = conn.rs.getString("SubPartnerNom");
+                County = conn.rs.getString("County");
+                CountyID = conn.rs.getString("CountyID");
+                District= conn.rs.getString("DistrictNom");
+                DistrictID= conn.rs.getString("DistrictID");
                 smear0 = conn.rs.getString("smear0");
                 genexpert = conn.rs.getString("genexpert");
                 withinfacility = conn.rs.getString("tested_within_facility");
@@ -163,7 +169,7 @@
                                                     <div class="form-group">
                                                         <label for="county">County</label>
                                                         <select class="form-control"  onchange="patasubcounty()" name='county' id='county'>
-                                                            <option value=""> Select County</option>
+                                                            <option  selected value="<%=CountyID%>"> <%=County%></option>
                                                             <option value="1"> Nakuru</option>
                                                             <option value="2"> Laikipia</option>
                                                             <option value="3"> Narok</option>
@@ -176,7 +182,7 @@
                                                     <div class="form-group">
                                                         <label for="subCounty">Sub-County</label>
                                                         <select class="form-control"  onchange='patafacility()' name='subcounty' id='subcounty' >
-
+                                                            <option  selected value="<%=DistrictID%>"> <%=District%></option>
 
                                                         </select>
                                                     </div>
