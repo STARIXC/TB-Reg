@@ -47,7 +47,7 @@
             record_id = request.getParameter("id");
             //query
             //String query ="select * from author inner join book on author.author_id = book.author_id ";
-            String sql ="select * from tibu_tb_raw inner join subpartnera on tibu_tb_raw.SubPartnerID = subpartnera.SubPartnerID inner join district on subpartnera.DistrictID inner county on district.CountyID WHERE `id`='" + record_id + "'";
+            String sql ="select * from tibu_tb_raw inner join subpartnera on tibu_tb_raw.SubPartnerID = subpartnera.SubPartnerID inner join district on subpartnera.DistrictID inner join county on district.CountyID WHERE `id`='" + record_id + "'";
            // String sql = "SELECT * FROM `tibu_tb_raw` WHERE `id`='" + record_id + "'";
             conn.rs = conn.st.executeQuery(sql);
 
