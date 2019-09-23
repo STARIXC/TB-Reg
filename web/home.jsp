@@ -345,7 +345,7 @@
                                                         <th>Edit</th>
                                                     </tr>
                                                 </thead>
-                                                <tbody>
+                                                <tbody id="databody">
                                                     <%@ include file = "list_data.jsp" %>
                                                     <!----data from  db table---->
 

@@ -1,147 +1,180 @@
 function patasubcounty() {
-    var county = document.getElementById("county").value;
-    $.ajax({
+var county = document.getElementById("county").value;
+        $.ajax({
         url: 'getsubcounty?county=' + county,
-        type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            $("#subcounty").html(data.replace("<option value=''>Select sub-county</option>", ""));
-            var select = document.getElementById('subcounty');
-            //select.size = select.length;
+                type: 'post',
+                dataType: 'html',
+                success: function (data)
+                {
+                $("#subcounty").html(data.replace("<option value=''>Select sub-county</option>", ""));
+                        var select = document.getElementById('subcounty');
+                        //select.size = select.length;
 
-            //  App.init();   
+                        //  App.init();   
+                }
+        });
         }
-    });
-
-}
 function patasubcounty_1() {
-    var county = document.getElementById("county").value;
-    $.ajax({
+var county = document.getElementById("county").value;
+        $.ajax({
         url: 'getsubcounty?county=' + county,
-        type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            $("#subcounty").html(data.replace("<option value=''>Select sub-county</option>", ""));
-            var select = document.getElementById('subcounty');
-            //select.size = select.length;
+                type: 'post',
+                dataType: 'html',
+                success: function (data)
+                {
+                $("#subcounty").html(data.replace("<option value=''>Select sub-county</option>", ""));
+                        var select = document.getElementById('subcounty');
+                        //select.size = select.length;
 
-            //  App.init();   
+                        //  App.init();   
+                }
+        });
         }
-    });
-
-}
 function showTreatmentDate() {
-    var selectBox = document.getElelmentByID('hivStatus');
-    var userInput = selectBox.options[selectBox.selectedIndex].value;
-    if (userInput === 'Pos') {
-        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
-    } else {
-        document.getElelmentByID('dttreatment'.style.visibility = 'visible');
-    }
-    return false;
+var selectBox = document.getElelmentByID('hivStatus');
+        var userInput = selectBox.options[selectBox.selectedIndex].value;
+        if (userInput === 'Pos') {
+document.getElelmentByID('dttreatment'.style.visibility = 'visible');
+} else {
+document.getElelmentByID('dttreatment'.style.visibility = 'visible');
 }
+return false;
+        }
 function patafacility() {
 
-    var subcounty = document.getElementById("subcounty").value;
-    $.ajax({
+var subcounty = document.getElementById("subcounty").value;
+        $.ajax({
         url: 'getfacility?subcounty=' + subcounty,
-        type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            $("#facility").html(data.replace("<option value=''>Select facility</option>", ""));
-            var select = document.getElementById('facility');
-            // select.size = select.length;
-            $('#facility').select();
+                type: 'post',
+                dataType: 'html',
+                success: function (data)
+                {
+                $("#facility").html(data.replace("<option value=''>Select facility</option>", ""));
+                        var select = document.getElementById('facility');
+                        // select.size = select.length;
+                        $('#facility').select();
+                }
+        });
         }
-    });
-}
 function displayData() {
 
-    $.ajax({
-        url: './viewData',
+$.ajax({
+url: './viewData',
         type: 'GET',
+        dataType: 'json',
         success: function (data)
         {
-            $("#data").html(data);
-            //  $('#tb_report_table').DataTable();
-            // $('#tb_report_table1').DataTable();
+        if (data.data.length) {
+        $.each(data.data, funcction(i, data)
+        {
+            var display ='<tr><td>'
+                       + data.SerialNumber +
+                        '</td><td>'
+                        + data.SubPartnerID +
+                        '</td><td>'
+                        + data.SubCountyRegNo +
+                        '</td><td>'
+                        + data.Mflcode +
+                        '</td><td>'
+                        + data.SubPartnerNom +
+                        '</td><td>'
+                        + data.hivStatus +
+                        '</td><td>'
+                        + data.artStatus +
+                        '</td><td>'
+                        + data.sex +
+                        '</td><td>'
+                        + data.sex +
+                        '</td><td>'
+                        + data.age +
+                        '</td><td>'
+                        + data.registrationdate +
+                        '</td><td><a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + data.id + '""><i class="glyphicon glyphicon-edit"></i></a>'
+                        + '</td></tr>';
+                $(displayData).append('#databody');
+
+        });
+        }else{
+            $('#databody').html("No results");
+        }
+
+
+        //  $("#data").html(data);
+        //  $('#tb_report_table').DataTable();
+        // $('#tb_report_table1').DataTable();
 
         },
         error: function (error) {
-            $("#data").html(error);
-
+        $("#data").html(error);
         }
-    });
-}
+});
+        }
+
 function displayUpdateData() {
 
-    $.ajax({
-        url: './viewUpdate',
+$.ajax({
+url: './viewUpdate',
         type: 'GET',
         success: function (data)
         {
-            $("#data_update").html(data);
-            //  
-            // $('#tb_report_table1').DataTable();
+        $("#data_update").html(data);
+                //  
+                // $('#tb_report_table1').DataTable();
 
         },
         error: function (error) {
-            $("#data_update").html(error);
-
+        $("#data_update").html(error);
         }
-    });
-}
+});
+        }
 function pataregfacility() {
 
-    //var subcounty = document.getElementById("subcounty").value;
-    $.ajax({
-        url: 'get_facility',
+//var subcounty = document.getElementById("subcounty").value;
+$.ajax({
+url: 'get_facility',
         type: 'post',
         dataType: 'html',
         success: function (data)
         {
-            $("#department").html(data.replace("<option value=''>Select facility</option>", ""));
-            var select = document.getElementById('department');
-            // select.size = select.length;
-            $('#department').select2();
+        $("#department").html(data.replace("<option value=''>Select facility</option>", ""));
+                var select = document.getElementById('department');
+                // select.size = select.length;
+                $('#department').select2();
         }
-    });
-}
+});
+        }
 function checkEmail() {
-    $('#mailexist_err').html('<img src="images/25.gif"> loading...');
-    var email = document.getElementById("email").value;
-    $.ajax({
+$('#mailexist_err').html('<img src="images/25.gif"> loading...');
+        var email = document.getElementById("email").value;
+        $.ajax({
         url: 'username_email_verification?email=' + email,
-        type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            setTimeout(function () {
+                type: 'post',
+                dataType: 'html',
+                success: function (data)
+                {
+                setTimeout(function () {
                 $('#mailexist_err').html(data);
-                // $('#form_data')[0].reset();
-            }, 2000);
+                        // $('#form_data')[0].reset();
+                }, 2000);
+                }
+        });
         }
-    });
-}
 function checkUsername() {
-    $('#usernameexits').html('<img src="images/25.gif"> loading...');
-    var username = document.getElementById("username").value;
-    $.ajax({
+$('#usernameexits').html('<img src="images/25.gif"> loading...');
+        var username = document.getElementById("username").value;
+        $.ajax({
         url: 'username_verification?username=' + username,
-        type: 'post',
-        dataType: 'html',
-        success: function (data)
-        {
-            setTimeout(function () {
+                type: 'post',
+                dataType: 'html',
+                success: function (data)
+                {
+                setTimeout(function () {
                 $('#usernameexits').html(data);
-                // $('#form_data')[0].reset();
-            }, 2000);
+                        // $('#form_data')[0].reset();
+                }, 2000);
+                }
+        });
         }
-    });
-}
 
 //function getData() {
 //// $('#usernameexits').html('<img src="images/25.gif"> loading...');
@@ -154,7 +187,7 @@ function checkUsername() {
 //        {
 //            var json = jQuery.parseJSON(data);
 //            //iterate the json Arat and print it in tarbular format
-//            $.each(json, function (idx, obj) {
+//            $.each(json, function (idx, data) {
 //                
 //                $('#database tr:last').after(
 //
