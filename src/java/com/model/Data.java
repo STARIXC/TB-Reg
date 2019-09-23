@@ -1,4 +1,3 @@
-
 package com.model;
 
 /**
@@ -6,13 +5,18 @@ package com.model;
  * @author starixc
  */
 public class Data {
-   private String ID;
+
+    private String ID;
+    private String SerialNumber;
     private String SubPartnerID;
+    private String SubCountyRegNO;
     private String RegistrationDate;
-    private String quarter;
-    private String year;
     private String Sex;
     private String Age;
+    private String Xray;
+    private String quarter;
+    private String year;
+    
     private String TreatmentDate;
     private String hivStatus;
     private String hivTestDate;
@@ -22,6 +26,10 @@ public class Data {
     private String mflcode;
     private String agebracket;
     private String SubPartnerNom;
+    private String County;
+    private String CountyID;
+    private String DistrictNom;
+    private String DistrictID;
     private String SupportType;
     private String tbtype;
     private String patienttype;
@@ -34,41 +42,17 @@ public class Data {
     private String Initial_modality;
     private String OutcomeDate;
 
-    public Data(){
-    }
-    public Data(String ID){
-        this.ID=ID;
-    }
-   
-     public Data(String ID, String SubPartnerID, String RegistrationDate, String Sex, String Age, String TreatmentDate, String hivStatus, String hivTestDate, String artStatus, String artDate, String mflcode, String SubPartnerNom, String SupportType, String Smear0, String genExpert, String WithinFaciity, String Initial_modality) {
+    public Data(String ID, String SerialNumber, String SubPartnerID, String SubCountyRegNO, String RegistrationDate, String Sex, String Age, String Xray, String quarter, String year, String TreatmentDate, String hivStatus, String hivTestDate, String artStatus, String artDate, String treatmentOutcome, String mflcode, String agebracket, String SubPartnerNom, String County, String CountyID, String DistrictNom, String DistrictID, String SupportType, String tbtype, String patienttype, String Smear0, String Smear2_3, String Smear5, String Smear6_8, String genExpert, String WithinFaciity, String Initial_modality, String OutcomeDate) {
         this.ID = ID;
+        this.SerialNumber = SerialNumber;
         this.SubPartnerID = SubPartnerID;
+        this.SubCountyRegNO = SubCountyRegNO;
         this.RegistrationDate = RegistrationDate;
         this.Sex = Sex;
         this.Age = Age;
-        this.TreatmentDate = TreatmentDate;
-        this.hivStatus = hivStatus;
-        this.hivTestDate = hivTestDate;
-        this.artStatus = artStatus;
-        this.artDate = artDate;
-        this.mflcode = mflcode;
-        this.SubPartnerNom = SubPartnerNom;
-        this.SupportType = SupportType;
-        this.Smear0 = Smear0;
-        this.genExpert = genExpert;
-        this.WithinFaciity = WithinFaciity;
-        this.Initial_modality = Initial_modality;
-    }
-
-
-    public Data(String ID, String SubPartnerID, String RegistrationDate, String quarter, String year, String Sex, String Age, String TreatmentDate, String hivStatus, String hivTestDate, String artStatus, String artDate, String treatmentOutcome, String mflcode, String agebracket, String SubPartnerNom, String SupportType, String tbtype, String patienttype, String Smear0, String Smear2_3, String Smear5, String Smear6_8, String genExpert, String WithinFaciity, String Initial_modality, String OutcomeDate) {
-        this.ID = ID;
-        this.SubPartnerID = SubPartnerID;
-        this.RegistrationDate = RegistrationDate;
+        this.Xray = Xray;
         this.quarter = quarter;
         this.year = year;
-        this.Sex = Sex;
-        this.Age = Age;
         this.TreatmentDate = TreatmentDate;
         this.hivStatus = hivStatus;
         this.hivTestDate = hivTestDate;
@@ -78,6 +62,10 @@ public class Data {
         this.mflcode = mflcode;
         this.agebracket = agebracket;
         this.SubPartnerNom = SubPartnerNom;
+        this.County = County;
+        this.CountyID = CountyID;
+        this.DistrictNom = DistrictNom;
+        this.DistrictID = DistrictID;
         this.SupportType = SupportType;
         this.tbtype = tbtype;
         this.patienttype = patienttype;
@@ -91,8 +79,8 @@ public class Data {
         this.OutcomeDate = OutcomeDate;
     }
 
-    public Data(String ID, String SubPartnerID, String RegistrationDate, String hivStatus, String mflcode, String SubPartnerNom, String SupportType) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public Data() {
+        //To change body of generated methods, choose Tools | Templates.
     }
 
     public String getID() {
@@ -103,6 +91,14 @@ public class Data {
         this.ID = ID;
     }
 
+    public String getSerialNumber() {
+        return SerialNumber;
+    }
+
+    public void setSerialNumber(String SerialNumber) {
+        this.SerialNumber = SerialNumber;
+    }
+
     public String getSubPartnerID() {
         return SubPartnerID;
     }
@@ -111,28 +107,20 @@ public class Data {
         this.SubPartnerID = SubPartnerID;
     }
 
+    public String getSubCountyRegNO() {
+        return SubCountyRegNO;
+    }
+
+    public void setSubCountyRegNO(String SubCountyRegNO) {
+        this.SubCountyRegNO = SubCountyRegNO;
+    }
+
     public String getRegistrationDate() {
         return RegistrationDate;
     }
 
     public void setRegistrationDate(String RegistrationDate) {
         this.RegistrationDate = RegistrationDate;
-    }
-
-    public String getQuarter() {
-        return quarter;
-    }
-
-    public void setQuarter(String quarter) {
-        this.quarter = quarter;
-    }
-
-    public String getYear() {
-        return year;
-    }
-
-    public void setYear(String year) {
-        this.year = year;
     }
 
     public String getSex() {
@@ -149,6 +137,30 @@ public class Data {
 
     public void setAge(String Age) {
         this.Age = Age;
+    }
+
+    public String getXray() {
+        return Xray;
+    }
+
+    public void setXray(String Xray) {
+        this.Xray = Xray;
+    }
+
+    public String getQuarter() {
+        return quarter;
+    }
+
+    public void setQuarter(String quarter) {
+        this.quarter = quarter;
+    }
+
+    public String getYear() {
+        return year;
+    }
+
+    public void setYear(String year) {
+        this.year = year;
     }
 
     public String getTreatmentDate() {
@@ -221,6 +233,38 @@ public class Data {
 
     public void setSubPartnerNom(String SubPartnerNom) {
         this.SubPartnerNom = SubPartnerNom;
+    }
+
+    public String getCounty() {
+        return County;
+    }
+
+    public void setCounty(String County) {
+        this.County = County;
+    }
+
+    public String getCountyID() {
+        return CountyID;
+    }
+
+    public void setCountyID(String CountyID) {
+        this.CountyID = CountyID;
+    }
+
+    public String getDistrictNom() {
+        return DistrictNom;
+    }
+
+    public void setDistrictNom(String DistrictNom) {
+        this.DistrictNom = DistrictNom;
+    }
+
+    public String getDistrictID() {
+        return DistrictID;
+    }
+
+    public void setDistrictID(String DistrictID) {
+        this.DistrictID = DistrictID;
     }
 
     public String getSupportType() {
@@ -310,5 +354,6 @@ public class Data {
     public void setOutcomeDate(String OutcomeDate) {
         this.OutcomeDate = OutcomeDate;
     }
-    
+
+   
 }

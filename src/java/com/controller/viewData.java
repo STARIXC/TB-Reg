@@ -6,17 +6,20 @@
 package com.controller;
 
 import com.database.dbConn;
+import com.google.gson.Gson;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.json.*;
+import com.model.Data;
+import java.util.Set;
 
 /**
  *
@@ -30,49 +33,64 @@ public class viewData extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
+     * @return
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    protected void processRequest(HttpServletRequest request, HttpServletResponse response)
+    protected ArrayList processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String user_id="";
-        
-        try { 
-            
-            user_id = request.getParameter("userid");
-            System.out.println("User ID is: "+user_id);
-           //query
+        //String user_id = "";
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out = response.getWriter();
+        ArrayList data = new ArrayList();
+        try {
+
+            String user_id = request.getParameter("userid");
+            System.out.println("User ID is: " + user_id);
+            //query
             String sql = "SELECT * FROM tibu_tb_raw WHERE user_id='" + user_id + "' ORDER BY `timestamp` DESC";
             dbConn conn = new dbConn();
             conn.rs = conn.st.executeQuery(sql);
             System.out.println("got respose");
-            //JSOn DATa VAriables
-            JSONArray json = new JSONArray();
-            ResultSetMetaData metadata = conn.rs.getMetaData();
-            int numColumns = metadata.getColumnCount();
-
-            //String data = "<table id='tb_report_table' class='table table-striped table-bordered' style='width:100%'><thead><tr><th>SubPartner ID</th><th>Registration Date</th><th>HIV Status</th> <th>MFL Code</th><th>Facility Name</th><th>Edit</th></tr></thead><tbody> ";
             while (conn.rs.next()) {
-              JSONObject obj = new JSONObject();//extend HashMap
-                for (int i = 0; i <= numColumns; i++) {
-                   String column_name=metadata.getColumnName(i);
-                   obj.put(column_name, conn.rs.getObject(column_name));
-                   System.out.println("conn.rs.getObject('" + column_name + "')........." + conn.rs.getObject(column_name));
-                }
-              
-              System.out.println("Added JSON object to JSON Array..");
-            
+                Data dt = new Data();
+                dt.setID(conn.rs.getString("id"));
+                dt.setSubPartnerID(conn.rs.getString("SubPartnerID"));
+                // dt.   ID = conn.rs.getString("id");
+                dt.setSerialNumber(conn.rs.getString("serialno"));
+                dt.setSubPartnerID(conn.rs.getString("SubPartnerID"));
+                dt.setDistrictNom(conn.rs.getString("DistrictNom"));
+                dt.setRegistrationDate(conn.rs.getString("registrationdate"));
+                dt.setSex(conn.rs.getString("sex"));
+                dt.setAge(conn.rs.getString("age"));
+                dt.setXray(conn.rs.getString("xray"));
+                dt.setTreatmentDate(conn.rs.getString("treatmentdate"));
+                dt.setHivStatus(conn.rs.getString("hivstatus"));
+                dt.setHivTestDate(conn.rs.getString("hivtestdate"));
+                dt.setArtStatus(conn.rs.getString("artstatus"));
+                dt.setArtDate(conn.rs.getString("artdate"));
+                dt.setMflcode(conn.rs.getString("Mflcode"));
+                dt.setSubPartnerNom(conn.rs.getString("SubPartnerNom"));
+                dt.setCounty(conn.rs.getString("County"));
+                dt.setCountyID(conn.rs.getString("CountyID"));
+                //dt.setDistrict( conn.rs.getString("DistrictNom"));
+                dt.setDistrictID(conn.rs.getString("DistrictID"));
+                dt.setSmear0(conn.rs.getString("smear0"));
+                dt.setGenExpert(conn.rs.getString("genexpert"));
+                dt.setWithinFaciity(conn.rs.getString("tested_within_facility"));
+                dt.setInitial_modality(conn.rs.getString("initial_modality"));
+                data.add(dt);
+                Gson gson = new Gson();
+                String data_output = gson.toJson(data);
+                out.println("{\"data\":"+data_output+"}");
+                System.out.print(data_output);
             }
-            response.setContentType("application/json;charset=UTF-8");
-            PrintWriter out = response.getWriter();
-            
-            // data += "</tbody></table>";
-            System.out.println(json);
-            out.println(json);
-            out.close();
+            return data;
+
         } catch (SQLException ex) {
             Logger.getLogger(getfacility.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return data;
 
     }
 
