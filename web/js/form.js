@@ -154,8 +154,10 @@ $(function () {
             
                 $.ajax({
                     type: 'POST',
-                    url: "./savedata",
+                   // url: "./savedata",
+                    url: "./InsertData",
                     data: dataString,
+                    cache: false,
                     success: function (result)
                     {
                         setTimeout(function () {
