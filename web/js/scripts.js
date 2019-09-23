@@ -104,7 +104,7 @@ function displayData() {
     });
 }
 
-displayData();
+//displayData();
 
 function displayUpdateData() {
 
