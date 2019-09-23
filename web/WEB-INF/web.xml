@@ -64,6 +64,10 @@
         <servlet-name>username_email_verification</servlet-name>
         <servlet-class>com.controller.username_email_verification</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>InsertData</servlet-name>
+        <servlet-class>com.controller.InsertData</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>getsubcounty</servlet-name>
         <url-pattern>/getsubcounty</url-pattern>
@@ -124,7 +128,10 @@
         <servlet-name>EmployeeServlet</servlet-name>
         <url-pattern>/EmployeeServlet</url-pattern>
     </servlet-mapping>
-   
+    <servlet-mapping>
+        <servlet-name>InsertData</servlet-name>
+        <url-pattern>/InsertData</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30

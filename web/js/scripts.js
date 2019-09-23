@@ -91,7 +91,7 @@ url: './viewData',
                         + data.registrationdate +
                         '</td><td><a class="btn btn-sm btn-success" title="Edit" href="edit.jsp?id="' + data.id + '""><i class="glyphicon glyphicon-edit"></i></a>'
                         + '</td></tr>';
-                $(displayData).append('#databody');
+                $(display).append('#databody');
 
         });
         }else{
@@ -109,6 +109,8 @@ url: './viewData',
         }
 });
         }
+        
+        displayData();
 
 function displayUpdateData() {
 
